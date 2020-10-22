@@ -43,24 +43,42 @@ public class Demo {
     return x;
   }
 
+  public static int[][] create2DArrayRandomized(int rows, int cols,int maxValue) {
+    double r = 0;
+    double thing = 0;
+    int rand = 0;
+    int[][]x = new int[rows][];
+    for(int i = 0;i<rows;i++) {
+      thing = Math.random();
+      rand = (int) (thing * cols);
+      x[i] = new int[rand+1];
+      for(int j = 0;j<rand+1;j++) {
+        r = Math.random();
+        x[i][j] = (int) (r * maxValue);
+      }
+    }
+    return x;
+  }
+
   public static void main(String[] args) {
-    // if (args.length == 0) {
-    //   for (int i = 1; i <= 5; i++) {
-    //     for (int j = 5; j >= i; j--) {
-    //       System.out.print(i+"");
-    //     }
-    //     System.out.println();
-    //   }
-    // }
-    // else {
-    //   int length = Integer.parseInt(args[0]);
-    //   for (int i = 1; i <= length; i++) {
-    //     for (int j = length; j >= i; j--) {
-    //       System.out.print(i+"");
-    //     }
-    //     System.out.println();
-    //   }
-    // }
-    System.out.println(arrayDeepToString(create2DArray(3,4,9)).replace("}, ","},\n "));
+    if (args.length == 0) {
+      for (int i = 1; i <= 5; i++) {
+        for (int j = 5; j >= i; j--) {
+          System.out.print(i+"");
+        }
+        System.out.println();
+      }
+    }
+    else {
+      int length = Integer.parseInt(args[0]);
+      for (int i = 1; i <= length; i++) {
+        for (int j = length; j >= i; j--) {
+          System.out.print(i+"");
+        }
+        System.out.println();
+      }
+    }
+    // System.out.println(arrayDeepToString(create2DArrayRandomized(6,4,4)).replace("}, ","},\n "));
+    // System.out.println(arrayDeepToString(create2DArrayRandomized(4,10,100)).replace("}, ","},\n "));
   }
 }
