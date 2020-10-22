@@ -31,6 +31,17 @@ public class Demo {
     }
     return realresult + "}";
   }
+  public static int[][] create2DArray(int rows, int cols,int maxValue) {
+    double r = 0;
+    int[][]x = new int[rows][cols];
+    for(int i = 0;i<rows;i++) {
+      for(int j = 0;j<cols;j++) {
+        r = Math.random();
+        x[i][j] = (int) (r * maxValue);
+      }
+    }
+    return x;
+  }
 
   public static void main(String[] args) {
     // if (args.length == 0) {
@@ -50,7 +61,6 @@ public class Demo {
     //     System.out.println();
     //   }
     // }
-    int[][] arr = {{1, 2}, {3, 4}};
-    System.out.println(arrayDeepToString(arr));
+    System.out.println(arrayDeepToString(create2DArray(3,4,9)).replace("}, ","},\n "));
   }
 }
