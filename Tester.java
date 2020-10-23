@@ -28,6 +28,27 @@ public class Tester {
     return x;
   }
 
+  public static String arrayDeepToString(int[][]arr) {
+    String result = "{";
+    String realresult = "{";
+    for(int i = 0;i<arr.length;i++) {
+      result = "{";
+      for(int j = 0;j<arr[i].length;j++) {
+        if (j != (arr[i].length-1)) {
+          result = result + arr[i][j] + ", ";
+        }
+        else result = result + arr[i][j];
+      }
+      result = result + "}";
+
+      if (i != (arr.length-1)) {
+        realresult = realresult + result + ", ";
+      }
+      else realresult = realresult + result;
+    }
+    return realresult + "}";
+  }
+
   public static void main(String[] args) {
     // int[] arr0 = {1,2,3,4,5};
     // int[] arr1 = {10, -2, -1, 2, 3};
@@ -44,9 +65,12 @@ public class Tester {
     // System.out.println(ArrayOps.largest(arr2));
 
     //sumRows() test cases
-    System.out.println(arrToString(ArrayOps.sumRows(create2DArrayRandomized(9,9,10))));
-    System.out.println(arrToString(ArrayOps.sumRows(create2DArrayRandomized(9,9,10))));
-    System.out.println(arrToString(ArrayOps.sumRows(create2DArrayRandomized(9,9,10))));
+    int[][]x = create2DArrayRandomized(8,9,10);
+    int[][]y = create2DArrayRandomized(8,9,10);
+    int[][]z = create2DArrayRandomized(8,9,10);
+    System.out.println(arrayDeepToString(x) + "       "  + arrToString(ArrayOps.sumRows(x)));
+    System.out.println(arrayDeepToString(y) + "       "  + arrToString(ArrayOps.sumRows(y)));
+    System.out.println(arrayDeepToString(z) + "       "  + arrToString(ArrayOps.sumRows(z)));
 
   }
 }
