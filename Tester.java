@@ -9,6 +9,11 @@ public class Tester {
     System.out.println(ArrayOps.sum(arr1));
     System.out.println(ArrayOps.sum(arr2));
 
+    //sum() test cases
+    System.out.println(ArrayOps.largest(arr0));
+    System.out.println(ArrayOps.largest(arr1));
+    System.out.println(ArrayOps.largest(arr2));
+
 
   }
 }
