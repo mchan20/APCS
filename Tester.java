@@ -28,6 +28,18 @@ public class Tester {
     return x;
   }
 
+  public static int[][] create2DArray(int rows, int cols,int maxValue) {
+    double r = 0;
+    int[][]x = new int[rows][cols];
+    for(int i = 0;i<rows;i++) {
+      for(int j = 0;j<cols;j++) {
+        r = Math.random();
+        x[i][j] = (int) (r * maxValue);
+      }
+    }
+    return x;
+  }
+
   public static String arrayDeepToString(int[][]arr) {
     String result = "{";
     String realresult = "{";
@@ -53,10 +65,10 @@ public class Tester {
     int[] arr0 = {1,2,3,4,5};
     int[] arr1 = {10, -2, -1, 2, 3};
     int[] arr2 = {410, -42, -1, 2, 3, 0, 0, 0, 12};
-    int[][]x = create2DArrayRandomized(2,4,10);
-    int[][]y = create2DArrayRandomized(3,4,10);
-    int[][]z = create2DArrayRandomized(4,4,10);
-    
+    int[][]x = create2DArray(2,2,10);
+    int[][]y = create2DArray(5,5,10);
+    int[][]z = create2DArray(4,4,10);
+
     //sum() test cases
     System.out.println(ArrayOps.sum(arr0));
     System.out.println(ArrayOps.sum(arr1));
@@ -77,6 +89,10 @@ public class Tester {
     System.out.println(arrayDeepToString(y) + "       "  + ArrayOps.sum(y));
     System.out.println(arrayDeepToString(z) + "       "  + ArrayOps.sum(z));
 
+    //sumCols() test cases
+    System.out.println(arrayDeepToString(x) + "       "  + arrToString(ArrayOps.sumCols(x)));
+    System.out.println(arrayDeepToString(y) + "       "  + arrToString(ArrayOps.sumCols(y)));
+    System.out.println(arrayDeepToString(z) + "       "  + arrToString(ArrayOps.sumCols(z)));
 
   }
 }
