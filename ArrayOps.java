@@ -64,8 +64,9 @@ public class ArrayOps {
     return true;
   }
 
-  // public static boolean isLocationMagic(int[][] matrix, int row, int col) {
-  //   int rowsum = sumRows(matrix)[row]
-  //   int colsum = sum
-  // }
+  public static boolean isLocationMagic(int[][] matrix, int row, int col) {
+    int rowsum = sumRows(matrix)[row];
+    int colsum = sumCols(matrix)[col];
+    return (rowsum == colsum);
+  }
 }
