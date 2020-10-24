@@ -53,10 +53,10 @@ public class Tester {
     int[] arr0 = {1,2,3,4,5};
     int[] arr1 = {10, -2, -1, 2, 3};
     int[] arr2 = {410, -42, -1, 2, 3, 0, 0, 0, 12};
-    int[][]x = create2DArrayRandomized(8,9,10);
-    int[][]y = create2DArrayRandomized(8,9,10);
-    int[][]z = create2DArrayRandomized(8,9,10);
-
+    int[][]x = create2DArrayRandomized(2,4,10);
+    int[][]y = create2DArrayRandomized(3,4,10);
+    int[][]z = create2DArrayRandomized(4,4,10);
+    
     //sum() test cases
     System.out.println(ArrayOps.sum(arr0));
     System.out.println(ArrayOps.sum(arr1));
@@ -72,10 +72,11 @@ public class Tester {
     System.out.println(arrayDeepToString(y) + "       "  + arrToString(ArrayOps.sumRows(y)));
     System.out.println(arrayDeepToString(z) + "       "  + arrToString(ArrayOps.sumRows(z)));
 
-    //largestInRows() test cases
-    System.out.println(arrayDeepToString(x) + "       "  + arrToString(ArrayOps.largestInRows(x)));
-    System.out.println(arrayDeepToString(y) + "       "  + arrToString(ArrayOps.largestInRows(y)));
-    System.out.println(arrayDeepToString(z) + "       "  + arrToString(ArrayOps.largestInRows(z)));
+    //sum() (the 2d array one) test cases
+    System.out.println(arrayDeepToString(x) + "       "  + ArrayOps.sum(x));
+    System.out.println(arrayDeepToString(y) + "       "  + ArrayOps.sum(y));
+    System.out.println(arrayDeepToString(z) + "       "  + ArrayOps.sum(z));
+
 
   }
 }
