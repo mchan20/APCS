@@ -110,6 +110,10 @@ public class Tester {
     System.out.println(ArrayOps.isRowMagic(thing2));
     System.out.println(ArrayOps.isRowMagic(thing3));
 
+    // System.out.println("");
+    // System.out.println("");
+    // System.out.println("");
+
     // isColMagic() test cases
     System.out.println(ArrayOps.isColMagic(thing));
     System.out.println(ArrayOps.isColMagic(thing2));
