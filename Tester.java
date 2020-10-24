@@ -62,37 +62,51 @@ public class Tester {
   }
 
   public static void main(String[] args) {
-    int[] arr0 = {1,2,3,4,5};
-    int[] arr1 = {10, -2, -1, 2, 3};
-    int[] arr2 = {410, -42, -1, 2, 3, 0, 0, 0, 12};
-    int[][]x = create2DArray(2,2,10);
-    int[][]y = create2DArray(5,5,10);
-    int[][]z = create2DArray(4,4,10);
+    // int[] arr0 = {1,2,3,4,5};
+    // int[] arr1 = {10, -2, -1, 2, 3};
+    // int[] arr2 = {410, -42, -1, 2, 3, 0, 0, 0, 12};
+    // int[][]x = create2DArray(2,2,10);
+    // int[][]y = create2DArray(5,5,10);
+    // int[][]z = create2DArray(4,4,10);
+    //
+    // //sum() test cases
+    // System.out.println(ArrayOps.sum(arr0));
+    // System.out.println(ArrayOps.sum(arr1));
+    // System.out.println(ArrayOps.sum(arr2));
+    //
+    // //largest() test cases
+    // System.out.println(ArrayOps.largest(arr0));
+    // System.out.println(ArrayOps.largest(arr1));
+    // System.out.println(ArrayOps.largest(arr2));
+    //
+    // //sumRows() test cases
+    // System.out.println(arrayDeepToString(x) + "       "  + arrToString(ArrayOps.sumRows(x)));
+    // System.out.println(arrayDeepToString(y) + "       "  + arrToString(ArrayOps.sumRows(y)));
+    // System.out.println(arrayDeepToString(z) + "       "  + arrToString(ArrayOps.sumRows(z)));
+    //
+    // //sum() (the 2d array one) test cases
+    // System.out.println(arrayDeepToString(x) + "       "  + ArrayOps.sum(x));
+    // System.out.println(arrayDeepToString(y) + "       "  + ArrayOps.sum(y));
+    // System.out.println(arrayDeepToString(z) + "       "  + ArrayOps.sum(z));
+    //
+    // //sumCols() test cases
+    // System.out.println(arrayDeepToString(x) + "       "  + arrToString(ArrayOps.sumCols(x)));
+    // System.out.println(arrayDeepToString(y) + "       "  + arrToString(ArrayOps.sumCols(y)));
+    // System.out.println(arrayDeepToString(z) + "       "  + arrToString(ArrayOps.sumCols(z)));
 
-    //sum() test cases
-    System.out.println(ArrayOps.sum(arr0));
-    System.out.println(ArrayOps.sum(arr1));
-    System.out.println(ArrayOps.sum(arr2));
 
-    //largest() test cases
-    System.out.println(ArrayOps.largest(arr0));
-    System.out.println(ArrayOps.largest(arr1));
-    System.out.println(ArrayOps.largest(arr2));
+    int[][] thing = { { 1, 2, 3, 4 },
+                      { 2, 3, 4, 1 },
+                      { 3, 4, 1, 2 } };
 
-    //sumRows() test cases
-    System.out.println(arrayDeepToString(x) + "       "  + arrToString(ArrayOps.sumRows(x)));
-    System.out.println(arrayDeepToString(y) + "       "  + arrToString(ArrayOps.sumRows(y)));
-    System.out.println(arrayDeepToString(z) + "       "  + arrToString(ArrayOps.sumRows(z)));
+    int[][] thing2 =  { {  2, 2, 2 },
+                        {  2, 2, 2  } };
 
-    //sum() (the 2d array one) test cases
-    System.out.println(arrayDeepToString(x) + "       "  + ArrayOps.sum(x));
-    System.out.println(arrayDeepToString(y) + "       "  + ArrayOps.sum(y));
-    System.out.println(arrayDeepToString(z) + "       "  + ArrayOps.sum(z));
-
-    //sumCols() test cases
-    System.out.println(arrayDeepToString(x) + "       "  + arrToString(ArrayOps.sumCols(x)));
-    System.out.println(arrayDeepToString(y) + "       "  + arrToString(ArrayOps.sumCols(y)));
-    System.out.println(arrayDeepToString(z) + "       "  + arrToString(ArrayOps.sumCols(z)));
-
+    int[][] thing3 =  { {  1,  1, 1 },
+                         {  2, 2, 2 },
+                         { 3,  3, 3 } };
+      System.out.println(ArrayOps.isRowMagic(thing));
+      System.out.println(ArrayOps.isRowMagic(thing2));
+      System.out.println(ArrayOps.isRowMagic(thing3));
   }
 }

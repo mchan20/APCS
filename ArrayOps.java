@@ -48,6 +48,12 @@ public class ArrayOps {
     return thing;
   }
 
-
+  public static boolean isRowMagic(int[][] matrix) {
+    int[]thing = sumRows(matrix);
+    for(int i = 1; i<thing.length; i++) {
+      if (thing[i] != thing[i-1]) return false;
+    }
+    return true;
+  }
 
 }
