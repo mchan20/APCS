@@ -9,17 +9,16 @@ public class BankAccount {
     password = p;
   }
 
-  public String getBal() {
-    return ("Your Balance is: " + balance);
+  public double getBalance() {
+    return (balance);
   }
 
-  public String getaccountID() {
+  public String getAccountID() {
     return ("Your account ID is: " + accountID);
   }
 
-  public String password(String newpassword) {
-    password = newpassword;
-    return "Your password has been changed.";
+  public void setPassword(String newPass){
+    password = newPass;
   }
 
   public boolean deposit(double amount){
@@ -37,5 +36,9 @@ public class BankAccount {
        return true;
      }
      else return false;
+   }
+
+   public String toString(){
+     return (accountID + "\t" + balance);
    }
 }
