@@ -17,4 +17,9 @@ public class BankAccount {
     return ("Your account ID is: " + accountID);
   }
 
+  public String password(String newpassword) {
+    password = newpassword;
+  }
+
+  
 }
