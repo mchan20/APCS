@@ -19,7 +19,14 @@ public class BankAccount {
 
   public String password(String newpassword) {
     password = newpassword;
+    return "Your password has been changed.";
   }
 
-  
+  public boolean deposit(double amount){
+    if (amount > 0) {
+      balance = balance + amount;
+      return true;
+    }
+    else return false;
+  }
 }
