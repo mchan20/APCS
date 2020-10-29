@@ -30,4 +30,13 @@ public class Triangle {
      double side3 = v2.distanceTo(v3);
      return Math.sqrt(semiperi*(semiperi-side1)*(semiperi-side2)*(semiperi-side3));
    }
+
+   public String classify() {
+     double side1 = Math.round(v1.distanceTo(v2)*1000.0)/1000.0;
+     double side2 = Math.round(v1.distanceTo(v3)*1000.0)/1000.0;
+     double side3 = Math.round(v2.distanceTo(v3)*1000.0)/1000.0;
+     if ((side1 == side2) && (side1 == side3) && (side2 == side3)) return "equilateral";
+     if ((side1 == side2) || (side1 == side3) || (side2 == side3)) return "isosceles";
+     else return "scalene";
+   }
 }
