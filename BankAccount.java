@@ -3,10 +3,10 @@ public class BankAccount {
   private int accountID;
   private String password;
 
-  public BankAccount(int a,String p) {
+  public BankAccount(int accountID,String password) {
     balance = 0;
-    accountID = a;
-    password = p;
+    this.accountID = accountID;
+    this.password = password;
   }
 
   public double getBalance() {
@@ -39,6 +39,18 @@ public class BankAccount {
    }
 
    public String toString(){
-     return (accountID + "\t" + balance);
+     return ("#" + accountID + "\t" + "$" + balance);
    }
+
+   private boolean authenticate(String password) {
+     return this.password.equals(password);
+   }
+
+   public boolean transferTo(BankAccount other, double amount, String password) {
+     if (authenticate(password) && withdraw(amount)) {
+       return other.deposit(amount);
+     }
+     else return false;
+   }
+
 }
