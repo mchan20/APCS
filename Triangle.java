@@ -22,4 +22,12 @@ public class Triangle {
      double side3 = v2.distanceTo(v3);
      return (side1+side2+side3);
    }
+
+   public double getArea() {
+     double semiperi = (getPerimeter()/2);
+     double side1 = v1.distanceTo(v2);
+     double side2 = v1.distanceTo(v3);
+     double side3 = v2.distanceTo(v3);
+     return Math.sqrt(semiperi*(semiperi-side1)*(semiperi-side2)*(semiperi-side3));
+   }
 }
