@@ -18,4 +18,15 @@ public class SuperArray {
     data[size] = element;
     return true;
   }
+
+  // public String get(int index) {
+  //   return data[size];
+  // }
+
+  public String set(int index, String element) {
+    String thing = data[index];
+    data[index] = element;
+    return thing;
+  }
+
 }
