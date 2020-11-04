@@ -42,5 +42,36 @@ public class SuperArray {
     data = thing;
   }
 
+  public boolean isEmpty() {
+    return (size == 0);
+  }
+
+  public void clear() {
+    String[] thing;
+    thing = new String[data.length];
+    data = thing;
+    size = 0;
+  }
+
+  public String toString() {
+    String result = "[";
+    for (int i=0;i<data.length;i++) {
+      if ((data.length-1) != i) {
+        result = result + data[i]; + ", ";
+      }
+      else result = result + data[i];
+    }
+    return result;
+  }
+
+  public boolean contains(String s) {
+    int count = 0;
+    for (int i=0;i<data.length;i++) {
+      if (s == data[i]) {
+        count++;
+      }
+    }
+    return (count > 0)
+  }
 
 }
