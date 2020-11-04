@@ -9,6 +9,11 @@ public class SuperArray {
     data = new String[10];
   }
 
+  public SuperArray(int initialCapacity) {
+    size = 0;
+    data = new String[initialCapacity];
+  }
+
   //Methods
   public int size() {
     return size;
@@ -73,5 +78,7 @@ public class SuperArray {
     }
     return (count > 0)
   }
+
+
 
 }
