@@ -62,10 +62,11 @@ public class SuperArray {
     String result = "[";
     for (int i=0;i<data.length;i++) {
       if ((data.length-1) != i) {
-        result = result + data[i]; + ", ";
+        result = result + data[i] + ", ";
       }
       else result = result + data[i];
     }
+    result = result + "]";
     return result;
   }
 
@@ -76,9 +77,20 @@ public class SuperArray {
         count++;
       }
     }
-    return (count > 0)
+    return (count > 0);
   }
 
-
+  public void add(int index, String element) {
+    String[] thing;
+    thing = new String[size-index];
+    resize();
+    for (int i=index;i<size;i++) {
+      thing[i-index] = data[i];
+    }
+    data[index] = element;
+    for (int i=index+1;i<thing.length;i++) {
+      data[i] = thing[i-index-1];
+    }
+  }
 
 }
