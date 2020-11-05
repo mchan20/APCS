@@ -94,24 +94,26 @@ public class SuperArray {
   }
 
   public void add(int index, String element){
-    if ((index < size-1) || (index > 0)) {
+    if ((index < size) && (index >= 0)) {
       int newIndex = size -1 ;
-      size++;
       for (int i = 0; i < size - index;i++){
         data[newIndex+1] = data[newIndex];
         newIndex = newIndex - 1;
       }
+      size++;
       data[index] = element;
     }
   }
 
   public String remove(int index) {
     String value = data[index];
-    for (int i=index;i<size-1;i++) {
-      data[i] = data[i+1];
+    if ((index < size) && (index >= 0)) {
+      for (int i=index;i<size-1;i++) {
+        data[i] = data[i+1];
+      }
+      data[size] = null;
+      size--;
     }
-    data[size] = null;
-    size--;
     return value;
   }
 
@@ -126,8 +128,8 @@ public class SuperArray {
 
   public String[] toArray() {
     String[] hello;
-    hello = new String[size-1];
-    for (int i=0;i<size-1;i++) {
+    hello = new String[size];
+    for (int i=0;i<size;i++) {
       hello[i] = data[i];
     }
     return hello;
