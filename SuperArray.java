@@ -60,8 +60,8 @@ public class SuperArray {
 
   public String toString() {
     String result = "[";
-    for (int i=0;i<data.length;i++) {
-      if ((data.length-1) != i) {
+    for (int i=0;i<size-1;i++) {
+      if ((size-2) != i) {
         result = result + data[i] + ", ";
       }
       else result = result + data[i];
