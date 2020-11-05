@@ -80,17 +80,30 @@ public class SuperArray {
     return (count > 0);
   }
 
-  public void add(int index, String element) {
+  public static String arrToString(String[]arr) {
+    String result = "{";
+    for(int i=0;i<arr.length;i++) {
+      if (i != (arr.length-1)) {
+        result = result + arr[i] + ", ";
+      }
+      else result = result + arr[i];
+    }
+    result = result + "}";
+    return result;
+  }
+
+  public String[] add(int index, String element) {
     String[] thing;
     thing = new String[size-index];
-    resize();
     for (int i=index;i<size;i++) {
       thing[i-index] = data[i];
     }
     data[index] = element;
-    for (int i=index+1;i<thing.length;i++) {
+    resize();
+    for (int i=index+1;i<thing.length+3;i++) {
       data[i] = thing[i-index-1];
     }
+    return thing;
   }
 
 }
