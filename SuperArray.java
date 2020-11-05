@@ -104,15 +104,9 @@ public class SuperArray {
 
   public String remove(int index) {
     String value = data[index];
-    String[] thing;
-    thing = new String[size-index-1];
-    for (int i=index+1;i<size-1;i++) {
-      thing[i-index-1] = data[i];
+    for (int i=index;i<size;i++) {
+      data[i] = data[i+1];
     }
-    for (int i=index;i<thing.length+index;i++) {
-      data[i] = thing[i-index];
-    }
-    size--;
     return value;
   }
 
@@ -125,8 +119,8 @@ public class SuperArray {
 
   public String[] toArray() {
     String[] hello;
-    hello = new String[data.length];
-    for (int i=0;i<size;i++) {
+    hello = new String[size-1];
+    for (int i=0;i<size-1;i++) {
       hello[i] = data[i];
     }
     return hello;
