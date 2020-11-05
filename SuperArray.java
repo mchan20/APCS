@@ -92,7 +92,7 @@ public class SuperArray {
     return result;
   }
 
-  public String[] add(int index, String element) {
+  public void add(int index, String element) {
     String[] thing;
     thing = new String[size-index];
     for (int i=index;i<size;i++) {
@@ -100,10 +100,11 @@ public class SuperArray {
     }
     data[index] = element;
     resize();
-    for (int i=index+1;i<thing.length+3;i++) {
+    for (int i=index+1;i<thing.length+index+1;i++) {
       data[i] = thing[i-index-1];
     }
-    return thing;
   }
+
+
 
 }
