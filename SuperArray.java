@@ -111,7 +111,7 @@ public class SuperArray {
       for (int i=index;i<size-1;i++) {
         data[i] = data[i+1];
       }
-      data[size] = null;
+      data[size-1] = null;
       size--;
     }
     return value;
