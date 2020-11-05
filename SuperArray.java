@@ -92,35 +92,26 @@ public class SuperArray {
     return result;
   }
 
-  public void add(int index, String element) {
-    String[] thing;
-    thing = new String[size-index];
-    for (int i=index;i<size;i++) {
-      thing[i-index] = data[i];
+  public void add(int index, String element){
+    int newIndex = size -1 ;
+    size++;
+    for (int i = 0; i < size - index;i++){
+      data[newIndex+1] = data[newIndex];
+      newIndex = newIndex - 1;
     }
     data[index] = element;
-    resize();
-    for (int i=index+1;i<thing.length+index+1;i++) {
-      data[i] = thing[i-index-1];
-    }
   }
 
   public String remove(int index) {
     String value = data[index];
     String[] thing;
     thing = new String[size-index-1];
-    String[] hello;
-    hello = new String[data.length-1];
-    for (int i=index+1;i<size;i++) {
+    for (int i=index+1;i<size-1;i++) {
       thing[i-index-1] = data[i];
     }
     for (int i=index;i<thing.length+index;i++) {
       data[i] = thing[i-index];
     }
-    for (int i=0;i<data.length-1;i++) {
-      hello[i] = data[i];
-    }
-    data = hello;
     size--;
     return value;
   }
@@ -135,7 +126,7 @@ public class SuperArray {
   public String[] toArray() {
     String[] hello;
     hello = new String[data.length];
-    for (int i=0;i<data.length;i++) {
+    for (int i=0;i<size;i++) {
       hello[i] = data[i];
     }
     return hello;
