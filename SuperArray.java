@@ -121,9 +121,16 @@ public class SuperArray {
       hello[i] = data[i];
     }
     data = hello;
+    size--;
     return value;
   }
 
+  public int indexOf(String s) {
+    for (int i=0;i<size;i++) {
+      if (s.equals(data[i])) return i;
+    }
+    return -1;
+  }
 
 
 }
