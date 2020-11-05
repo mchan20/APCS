@@ -60,8 +60,8 @@ public class SuperArray {
 
   public String toString() {
     String result = "[";
-    for (int i=0;i<size-1;i++) {
-      if ((size-2) != i) {
+    for (int i=0;i<size;i++) {
+      if ((size-1) != i) {
         result = result + data[i] + ", ";
       }
       else result = result + data[i];
@@ -70,14 +70,15 @@ public class SuperArray {
     return result;
   }
 
-  public boolean contains(String s) {
-    int count = 0;
-    for (int i=0;i<data.length;i++) {
-      if (s == data[i]) {
-        count++;
+  public boolean contains(String s){
+    int i = 0;
+    while (i<data.length){
+      if ((data[i] != null) && (data[i].equals(s))) {
+        return true;
       }
+      i = i + 1;
     }
-    return (count > 0);
+    return false;
   }
 
   public static String arrToString(String[]arr) {
@@ -93,26 +94,32 @@ public class SuperArray {
   }
 
   public void add(int index, String element){
-    int newIndex = size -1 ;
-    size++;
-    for (int i = 0; i < size - index;i++){
-      data[newIndex+1] = data[newIndex];
-      newIndex = newIndex - 1;
+    if ((index < size-1) || (index > 0)) {
+      int newIndex = size -1 ;
+      size++;
+      for (int i = 0; i < size - index;i++){
+        data[newIndex+1] = data[newIndex];
+        newIndex = newIndex - 1;
+      }
+      data[index] = element;
     }
-    data[index] = element;
   }
 
   public String remove(int index) {
     String value = data[index];
-    for (int i=index;i<size;i++) {
+    for (int i=index;i<size-1;i++) {
       data[i] = data[i+1];
     }
+    data[size] = null;
+    size--;
     return value;
   }
 
   public int indexOf(String s) {
-    for (int i=0;i<size;i++) {
-      if (s.equals(data[i])) return i;
+    for (int i = 0; i < size(); i ++) {
+      if (data[i].equals(s)) {
+        return i;
+      }
     }
     return -1;
   }
