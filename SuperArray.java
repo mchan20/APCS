@@ -145,5 +145,18 @@ public class SuperArray {
     return thing;
   }
 
+  public boolean equals(SuperArray other){
+    if (size() == other.size()) {
+      for(int i=0;i<size();i++) {
+        String thing = other.get(i);
+        String bruh = get(i);
+        if (!thing.equals(bruh)) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }
 
 }
