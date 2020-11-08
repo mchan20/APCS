@@ -137,8 +137,8 @@ public class SuperArray {
 
   public int lastIndexOf(String value){
     int thing = -1;
-    for (int i = 0; i < size(); i ++) {
-      if (data[i].equals(value)) {
+    for (int i = 0; i < size(); i++) {
+      if (get(i).equals(value)) {
         thing = i;
       }
     }
