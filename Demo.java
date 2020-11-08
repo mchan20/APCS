@@ -34,6 +34,29 @@ public class Demo{
     return thing;
   }
 
+  public static SuperArray zip(SuperArray a, SuperArray b){
+    SuperArray thing = new SuperArray(a.size()+b.size()+10);
+    if (a.size() >= b.size()) {
+      for (int i=0;i<b.size();i++) {
+        thing.add(a.get(i));
+        thing.add(b.get(i));
+      }
+      for (int j=b.size(); j<a.size();j++) {
+        thing.add(a.get(j));
+      }
+    }
+    if (b.size() > a.size()) {
+      for (int i=0;i<a.size();i++) {
+        thing.add(a.get(i));
+        thing.add(b.get(i));
+      }
+      for (int j=a.size(); j<b.size();j++) {
+        thing.add(b.get(j));
+      }
+    }
+    return thing;
+  }
+
   //main
   public static void main(String[]args){
     SuperArray words = new SuperArray();
