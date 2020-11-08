@@ -17,17 +17,17 @@ public class Demo{
     removeDuplicates(a);
     removeDuplicates(b);
     SuperArray thing = new SuperArray();
-    if (a.size() => b.size()) {
+    if (a.size() >= b.size()) {
       for (int i=0;i<a.size();i++) {
-        if b.contains(a.get(i)) {
-          thing.add(a.get(i))
+        if (b.contains(a.get(i))) {
+          thing.add(a.get(i));
         }
       }
     }
     else {
       for (int i=0;i<b.size();i++) {
-        if a.contains(b.get(i)) {
-          thing.add(b.get(i))
+        if (a.contains(b.get(i))) {
+          thing.add(b.get(i));
         }
       }
     }

@@ -135,18 +135,6 @@ public class SuperArray {
     return hello;
   }
 
-  public static void removeDuplicates(SuperArray s){
-    for(int i=0;i<s.size();i++) {
-      String thing = s.get(i);
-      for(int j=i+1;j<s.size();j++) {
-        String bruh = s.get(j);
-        if (thing.equals(bruh)) {
-          s.remove(j);
-          j--;
-        }
-      }
-    }
-  }
 
 
 }
