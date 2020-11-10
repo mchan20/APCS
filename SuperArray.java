@@ -39,6 +39,9 @@ public class SuperArray {
   }
 
   public String set(int index, String element) {
+    if (index < 0 || index >= size()) {
+      throw new IndexOutOfBoundsException("Index is not within the size of the array, or the index is negative.");
+    }
     String thing = data[index];
     data[index] = element;
     return thing;
@@ -166,7 +169,11 @@ public class SuperArray {
   }
 
   public static void main(String[] args) {
-    SuperArray hi = new SuperArray(10);
-    hi.get(-3);
+    SuperArray necessities = new SuperArray();
+    necessities.add("purell");        necessities.add("water");
+    necessities.add("toilet paper");  necessities.add("shelter");
+    necessities.add("toilet paper");  necessities.add("toilet paper");
+    necessities.add("food");
+    necessities.set(8,"hi");
   }
 }
