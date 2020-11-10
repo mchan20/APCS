@@ -11,7 +11,7 @@ public class SuperArray {
 
   public SuperArray(int initialCapacity) {
     if (initialCapacity < 0) {
-      throw new IllegalArgumentException("initialCapacity" + initialCapacity + " cannot be negative");
+      throw new IllegalArgumentException("Initial capacity " + initialCapacity + " cannot be negative.");
     }
     size = 0;
     data = new String[initialCapacity];
@@ -32,6 +32,9 @@ public class SuperArray {
   }
 
   public String get(int index) {
+    if (index < 0 || index >= size()) {
+      throw new IndexOutOfBoundsException("Index is not within the size of the array, or the index is negative.");
+    }
     return data[index];
   }
 
@@ -162,4 +165,8 @@ public class SuperArray {
     return false;
   }
 
+  public static void main(String[] args) {
+    SuperArray hi = new SuperArray(10);
+    hi.get(-3);
+  }
 }
