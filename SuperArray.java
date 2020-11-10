@@ -103,6 +103,9 @@ public class SuperArray {
   }
 
   public void add(int index, String element){
+    if (index < 0 || index > size()) {
+      throw new IndexOutOfBoundsException("Index is not within the size of the array, or the index is negative.");
+    }
     if ((index < size) && (index >= 0)) {
       int newIndex = size -1 ;
       for (int i = 0; i < size - index;i++){
@@ -115,6 +118,9 @@ public class SuperArray {
   }
 
   public String remove(int index) {
+    if (index < 0 || index >= size()) {
+      throw new IndexOutOfBoundsException("Index is not within the size of the array, or the index is negative.");
+    }
     String value = data[index];
     if ((index < size) && (index >= 0)) {
       for (int i=index;i<size-1;i++) {
@@ -168,12 +174,4 @@ public class SuperArray {
     return false;
   }
 
-  public static void main(String[] args) {
-    SuperArray necessities = new SuperArray();
-    necessities.add("purell");        necessities.add("water");
-    necessities.add("toilet paper");  necessities.add("shelter");
-    necessities.add("toilet paper");  necessities.add("toilet paper");
-    necessities.add("food");
-    necessities.set(8,"hi");
-  }
 }
