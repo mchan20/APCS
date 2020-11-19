@@ -106,15 +106,16 @@ public class SuperArray {
     if (index < 0 || index > size()) {
       throw new IndexOutOfBoundsException("Index is not within the size of the array, or the index is negative.");
     }
-    if ((index < size) && (index >= 0)) {
-      int newIndex = size -1 ;
-      for (int i = 0; i < size - index;i++){
-        data[newIndex+1] = data[newIndex];
-        newIndex = newIndex - 1;
-      }
-      size++;
-      data[index] = element;
+    if (size >= data.length) {
+      resize();
     }
+    int newIndex = size - 1 ;
+    for (int i = 0; i < size() - index;i++){
+      data[newIndex+1] = data[newIndex];
+      newIndex = newIndex - 1;
+    }
+    size++;
+    data[index] = element;
   }
 
   public String remove(int index) {
@@ -122,13 +123,11 @@ public class SuperArray {
       throw new IndexOutOfBoundsException("Index is not within the size of the array, or the index is negative.");
     }
     String value = data[index];
-    if ((index < size) && (index >= 0)) {
       for (int i=index;i<size-1;i++) {
         data[i] = data[i+1];
       }
       data[size-1] = null;
       size--;
-    }
     return value;
   }
 
