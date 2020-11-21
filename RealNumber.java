@@ -21,15 +21,10 @@ public class RealNumber{
   public boolean equals(RealNumber other){
     double difference = Math.abs(getValue() - other.getValue());
     if ((other.getValue() == 0) || (getValue() == 0)) {
-      if ((other.getValue() == 0) && (getValue() == 0)) {
-        return true;
-      }
-      else {
-        return false;
-      }
+      return ((other.getValue() == 0) && (getValue() == 0));
     }
     else {
-      return ((difference / getValue()) < 0.00001);
+      return ((difference / getValue()) <= 0.00001);
     }
   }
 

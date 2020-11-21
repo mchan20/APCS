@@ -9,13 +9,13 @@ public class RationalNumber extends RealNumber {
   */
   public RationalNumber(int nume, int deno) {
     super(0.0);
-    if (deno == 0) {
-      numerator = 0;
-      denominator = 1;
-    }
     if (deno < 0) {
       numerator = (-1 * nume);
       denominator = (-1 * deno);
+    }
+    if (deno == 0) {
+      numerator = 0;
+      denominator = 1;
     }
     else {
       numerator = nume;
@@ -25,7 +25,7 @@ public class RationalNumber extends RealNumber {
   }
 
   public double getValue(){
-    return (numerator / denominator);
+    return (double) getNumerator() / (double) getDenominator();
   }
 
   /**
@@ -67,18 +67,19 @@ public class RationalNumber extends RealNumber {
   *@param b the second integer
   *@return the value of the GCD
   */
-  public static int gcd(int a, int b){
+  private static int gcd(int a, int b){
     /*use euclids method or a better one*/
     int newa = 0;
     int newb = 0;
     int r = 1;
-    if (a >= b) {
-      newa = a;
-      newb = b;
+    if ((a == 0) || (b == 0)) return 0;
+    if (Math.abs(a) >= Math.abs(b)) {
+      newa = Math.abs(a);
+      newb = Math.abs(b);
     }
     else {
-      newa = b;
-      newb = a;
+      newa = Math.abs(b);
+      newb = Math.abs(a);
     }
     r = newa % newb;
     while (r > 0) {
@@ -96,8 +97,10 @@ public class RationalNumber extends RealNumber {
   */
   private void reduce(){
     int thing = gcd(getNumerator(),getDenominator());
-    numerator = numerator / thing;
-    denominator = denominator/ thing;
+    if (thing > 0) {
+      numerator = numerator / thing;
+      denominator = denominator/ thing;
+    }
   }
   /******************Operations Return a new RationalNumber!!!!****************/
   /**
@@ -123,7 +126,8 @@ public class RationalNumber extends RealNumber {
   /**
   *Return a new RationalNumber that this minus the other
   */
+
   public RationalNumber subtract(RationalNumber other){
-    return new RationalNumber((getNumerator()*other.getDenominator() - getDenominator()*other.getNumerator()), getDenominator()*other.getDenominator());
+    return new RationalNumber(((getNumerator()*other.getDenominator()) - (getDenominator()*other.getNumerator())), getDenominator()*other.getDenominator());
   }
 }
