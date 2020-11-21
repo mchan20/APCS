@@ -1,5 +1,4 @@
-public class RationalNumber extends RealNumber
-{
+public class RationalNumber extends RealNumber {
   private int numerator, denominator;
 
   /**Initialize the RationalNumber with the provided values
@@ -8,7 +7,8 @@ public class RationalNumber extends RealNumber
   *@param nume the numerator
   *@param deno the denominator
   */
-  public RationalNumber(int nume, int deno){
+  public RationalNumber(int nume, int deno) {
+    super(0.0);
     if (deno == 0) {
       numerator = 0;
       denominator = 1;
@@ -21,7 +21,6 @@ public class RationalNumber extends RealNumber
       numerator = nume;
       denominator = deno;
     }
-    super(numerator/denominator);
   }
 
   public double getValue(){
@@ -59,7 +58,7 @@ public class RationalNumber extends RealNumber
   *@return the value expressed as "3/4" or "8/3"
   */
   public String toString(){
-    return "0";
+    return getNumerator() + "/" + getDenominator();
   }
 
   /**Calculate the GCD of two integers.
