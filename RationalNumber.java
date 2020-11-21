@@ -66,10 +66,26 @@ public class RationalNumber extends RealNumber {
   *@param b the second integer
   *@return the value of the GCD
   */
-  private static int gcd(int a, int b){
+  public static int gcd(int a, int b){
     /*use euclids method or a better one*/
-    http://sites.math.rutgers.edu/~greenfie/gs2004/euclid.html
-    return 0;
+    int newa = 0;
+    int newb = 0;
+    int r = 0;
+    if (a >= b) {
+      newa = a;
+      newb = b;
+    }
+    else {
+      newa = b;
+      newb = a;
+    }
+    r = newa % newb;
+    while (r > 0) {
+      r = newa % newb;
+      newa = newb;
+      newb = r;
+    }
+    return newb;
   }
 
   /**
