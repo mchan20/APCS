@@ -38,7 +38,7 @@ public class RealNumber{
   *the sum of this and the other
   */
   public RealNumber add(RealNumber other){
-      return new RealNumber(getValue() + other.getValue());
+    return new RealNumber(getValue() + other.getValue());
   }
 
   /*
@@ -46,7 +46,7 @@ public class RealNumber{
   *the product of this and the other
   */
   public RealNumber multiply(RealNumber other){
-        return null;
+    return new RealNumber(getValue() * other.getValue());
   }
 
   /*
