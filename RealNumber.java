@@ -19,8 +19,18 @@ public class RealNumber{
   *Special case: if one is exactly zero, the other must be exactly zero.
   */
   public boolean equals(RealNumber other){
-    if (other.getValue() == 0)
-    return true;
+    double difference = Math.abs(getValue() - other.getValue());
+    if ((other.getValue() == 0) || (getValue() == 0)) {
+      if ((other.getValue() == 0) && (getValue() == 0)) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      return ((difference / getValue()) < 0.00001);
+    }
   }
 
   /*
