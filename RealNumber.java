@@ -54,7 +54,7 @@ public class RealNumber{
   *this divided by the other
   */
   public RealNumber divide(RealNumber other){
-        return null;
+    return new RealNumber(getValue() / other.getValue());
   }
 
   /*
