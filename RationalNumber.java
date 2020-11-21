@@ -67,11 +67,11 @@ public class RationalNumber extends RealNumber {
   *@param b the second integer
   *@return the value of the GCD
   */
-  private static int gcd(int a, int b){
+  public static int gcd(int a, int b){
     /*use euclids method or a better one*/
     int newa = 0;
     int newb = 0;
-    int r = 0;
+    int r = 1;
     if (a >= b) {
       newa = a;
       newb = b;
@@ -82,9 +82,9 @@ public class RationalNumber extends RealNumber {
     }
     r = newa % newb;
     while (r > 0) {
-      r = newa % newb;
       newa = newb;
       newb = r;
+      r = newa % newb;
     }
     return newb;
   }
@@ -96,7 +96,7 @@ public class RationalNumber extends RealNumber {
   */
   private void reduce(){
     int thing = gcd(getNumerator(),getDenominator());
-    numerator = numerator / thing ;
+    numerator = numerator / thing;
     denominator = denominator/ thing;
   }
   /******************Operations Return a new RationalNumber!!!!****************/
@@ -104,7 +104,7 @@ public class RationalNumber extends RealNumber {
   *Return a new RationalNumber that is the product of this and the other
   */
   public RationalNumber multiply(RationalNumber other){
-    return null;
+    return new RationalNumber(getNumerator()*other.getNumerator(),getDenominator()*other.getDenominator());
   }
 
   /**
