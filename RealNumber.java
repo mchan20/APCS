@@ -1,4 +1,4 @@
-public class RealNumber{
+public class RealNumber extends Number{
   private double value;
 
   public RealNumber(double v){
@@ -14,19 +14,6 @@ public class RealNumber{
   }
   //---------ONLY EDIT BELOW THIS LINE------------
 
-  /*
-  *Return true when the values are within 0.001% of eachother.
-  *Special case: if one is exactly zero, the other must be exactly zero.
-  */
-  public boolean equals(RealNumber other){
-    double difference = Math.abs(getValue() - other.getValue());
-    if ((other.getValue() == 0) || (getValue() == 0)) {
-      return ((other.getValue() == 0) && (getValue() == 0));
-    }
-    else {
-      return ((difference / getValue()) <= 0.00001);
-    }
-  }
 
   /*
   *Return a new RealNumber that has the value of:
