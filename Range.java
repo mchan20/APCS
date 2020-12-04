@@ -19,10 +19,17 @@ public class Range implements IntegerSequence{
     return end - start + 1;
   }
   public boolean hasNext(){
-    return (current != end)
+    return (current != end);
   }
 
   //@throws NoSuchElementException
-  public int next(){    }
+  public int next() throws NoSuchElementException {
+    if (!hasNext()) {
+      throw new NoSuchElementException("This is the last element");
+    }
+    int curr = current;
+    current++;
+    return curr;
+  }
 
 }
