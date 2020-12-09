@@ -22,5 +22,12 @@ public class ArraySequence implements IntegerSequence{
     currentIndex = 0;
   };     //start over from the start of the sequence
 
-  int next() {}       //return the current value in the sequence and advances to the next element.
+  int next() {
+    if (!hasNext()) {
+      throw new NoSuchElementException("This is the last element");
+    }
+    int curr = currentIndex;
+    currentIndex++;
+    return data[curr];
+  }       //return the current value in the sequence and advances to the next element.
 }
