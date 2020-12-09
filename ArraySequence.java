@@ -7,35 +7,35 @@ public class ArraySequence implements IntegerSequence{
   //Constructors
   /*Construct the sequence by copying values from the other array into the data array*/
   public ArraySequence(int [] other){
-    for(int i=0;i< other.length;i++) {
-      data[i] = other[i];
-    }
+    data = other;
   }
 
   //Postcondition: The otherseq will be reset.
   //This constructor will copy ALL values of the `otherseq` into the data array.
   public ArraySequence(IntegerSequence otherseq){
-    int thing[otherseq.length()];
-    otherseq.reset()
+    int thing[];
+    thing = new int[otherseq.length()];
+    otherseq.reset();
     for (int i = 0;i<otherseq.length();i++) {
-      thing[i] = otherseq.next()
+      thing[i] = otherseq.next();
     }
+    otherseq.reset();
     data = thing;
   }
 
   //Methods
-  boolean hasNext() {
-    return (currentIndex != (data.length-1);
+  public boolean hasNext() {
+    return (currentIndex != data.length);
   }
 
-  int length() {
+  public int length() {
     return data.length;
   }     //returns the total length of the sequence
-  void reset() {
+  public void reset() {
     currentIndex = 0;
   };     //start over from the start of the sequence
 
-  int next() {
+  public int next() {
     if (!hasNext()) {
       throw new NoSuchElementException("This is the last element");
     }
