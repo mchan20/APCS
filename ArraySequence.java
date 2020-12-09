@@ -4,6 +4,7 @@ public class ArraySequence implements IntegerSequence{
   int currentIndex;
   int []data;
 
+  //Constructors
   /*Construct the sequence by copying values from the other array into the data array*/
   public ArraySequence(int [] other){
     for(int i=0;i< other.length;i++) {
@@ -11,6 +12,18 @@ public class ArraySequence implements IntegerSequence{
     }
   }
 
+  //Postcondition: The otherseq will be reset.
+  //This constructor will copy ALL values of the `otherseq` into the data array.
+  public ArraySequence(IntegerSequence otherseq){
+    int thing[otherseq.length()];
+    otherseq.reset()
+    for (int i = 0;i<otherseq.length();i++) {
+      thing[i] = otherseq.next()
+    }
+    data = thing;
+  }
+
+  //Methods
   boolean hasNext() {
     return (currentIndex != (data.length-1);
   }
