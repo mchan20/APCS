@@ -10,4 +10,15 @@ public class NoNullArrayList<T> extends ArrayList<T> {
   public NoNullArrayList(int initialCapacity) {
     super(initialCapacity);
   }
+
+  //Methods
+  public boolean add(T value) {
+    if (value.equals(null)) {
+      throw new IllegalArgumentException("You cannot add null to this list");
+    }
+    super.add(value);
+    return true;
+  }
+
+
 }
