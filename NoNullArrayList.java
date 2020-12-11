@@ -26,4 +26,11 @@ public class NoNullArrayList<T> extends ArrayList<T> {
     }
     super.add(index, element);
   }
+
+  public T set(int index, T element) {
+    if (element == null) {
+      throw new IllegalArgumentException("You cannot add null to this list");
+    }
+    super.set(index, element);
+  }
 }
