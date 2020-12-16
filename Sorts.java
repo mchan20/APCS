@@ -4,16 +4,23 @@ public class Sorts{
   *@param data  the elements to be sorted.
   */
   public static void bubbleSort(int[] data){
+    int temp = 0;
     while (!inOrder(data)) {
-      for(int i;i<data.)
+      for(int i=0;i<data.length-1;i++) {
+        temp = data[i];
+        if (temp > data[i+1]) {
+          data[i] = data[i+1];
+          data[i+1] = temp;
+        }
+      }
     }
   }
 
-  public boolean inOrder(int[] data) {
-    int last = data[0];
-    for(int i = 1;i<data.length;i++) {
-      if (last > data[i]) return false;
-      last = data[i];
+  public static boolean inOrder(int[] thing) {
+    int last = thing[0];
+    for(int i = 1;i<thing.length;i++) {
+      if (last > thing[i]) return false;
+      last = thing[i];
     }
     return true;
   }
