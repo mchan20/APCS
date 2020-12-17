@@ -17,10 +17,12 @@ public class Sorts{
   }
 
   public static boolean inOrder(int[] thing) {
-    int last = thing[0];
-    for(int i = 1;i<thing.length;i++) {
-      if (last > thing[i]) return false;
-      last = thing[i];
+    if (thing.length > 0) {
+      int last = thing[0];
+      for(int i = 1;i<thing.length;i++) {
+        if (last > thing[i]) return false;
+        last = thing[i];
+      }
     }
     return true;
   }
