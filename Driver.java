@@ -2,6 +2,17 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Driver{
+  // public static String arrToString(int[]arr) {
+  //   String result = "{";
+  //   for(int i=0;i<arr.length;i++) {
+  //     if (i != (arr.length-1)) {
+  //       result = result + arr[i] + ", ";
+  //     }
+  //     else result = result + arr[i];
+  //   }
+  //   result = result + "}";
+  //   return result;
+  // }
 
   public static void main(String[]args){
     if(args.length < 2){
@@ -29,8 +40,8 @@ public class Driver{
           randData[i] = i;
         }
       }else if(args[2].equals("reversed")){
-        for(int i =  Integer.parseInt(args[0]); i > 0 ; i-- ){
-          randData[i] = i;
+        for(int i = Integer.parseInt(args[0])-1; i > 0 ; i-- ){
+          randData[Integer.parseInt(args[0])-1-i] = i;
         }
       }
 
@@ -67,8 +78,6 @@ public class Driver{
           System.out.println("Selection Correct!");
         }else{
          System.out.println("Selection Not Correct!!!!!!!!!11oneeleven");
-         System.out.println(arrToString(randData));
-         System.out.println(arrToString(randDataSelection));
         }
 
         if( Arrays.equals(randData,randDataInsertion)){

@@ -23,9 +23,15 @@ public class Tester {
       arr1[i] = (rng.nextInt() % 1000);
     }
 
+    int[]arr2 = new int[10];
+    for(int i = 9; i > 0 ; i-- ){
+      arr2[9-i] = i;
+    }
+
     System.out.println(arrToString(arr0));
     System.out.println(arrToString(arr1));
-    // System.out.println(arrToString(arr2));
+
+    System.out.println(arrToString(arr2));
 
     System.out.println("----------------------");
     // Sorts.bubbleSort(arr0);
@@ -36,11 +42,11 @@ public class Tester {
 
     Sorts.insertionSort(arr0);
     Sorts.insertionSort(arr1);
-    // Sorts.insertionSort(arr2);
+    Sorts.insertionSort(arr2);
 
     System.out.println(arrToString(arr0));
     System.out.println(arrToString(arr1));
-    // System.out.println(arrToString(arr2));
+    System.out.println(arrToString(arr2));
 
     System.out.println(Sorts.inOrder(arr0));
     System.out.println(Sorts.inOrder(arr1));
