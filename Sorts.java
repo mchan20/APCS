@@ -1,8 +1,4 @@
 public class Sorts{
-  /**Bubble sort of an int dataay.
-  *@postcondition The dataay will be modified such that the elements will be in increasing order.
-  *@param data  the elements to be sorted.
-  */
   public static void bubbleSort(int[] data){
     int temp = 0;
     while (!inOrder(data)) {
