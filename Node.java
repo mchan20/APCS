@@ -1,6 +1,8 @@
 public class Node{
   public Node(String value){
     data = value;
+    next = null;
+    prev = null;
   }
   private String data;
   private Node next,prev;
@@ -17,7 +19,7 @@ public class Node{
     return next;
   }
 
-  private void setNext(Node other){
+  public void setNext(Node other){
     next = other;
   }
 
@@ -25,7 +27,7 @@ public class Node{
     return prev;
   }
 
-  private void setPrev(Node other){
+  public void setPrev(Node other){
     prev = other;
   }
 

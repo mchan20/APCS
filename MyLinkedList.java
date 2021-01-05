@@ -6,14 +6,32 @@ public class MyLinkedList{
    start = null;
    end = null;
   }
-  // public int size();
-  // public boolean add(String value);
+  public int size() {
+    return size;
+  }
+  public boolean add(String value) {
+    Node n = new Node(value);
+    n.setPrev(end);
+    n.setNext(null);
+    if (size() == 0) {
+      start = n;
+      end = n;
+    }
+    else {
+      end = n;
+    }
+    size++;
+    return true;
+  }
   // public boolean add(int index, String value);
   // public String get(int index);
   // public String set(int index, String value);
-  // public String toString();
+  public String toString() {
+
+  }
   // //Any helper method that returns a Node object MUST BE PRIVATE!
   public static void main(String[] args) {
     MyLinkedList hi = new MyLinkedList();
+    hi.add()
   }
 }
