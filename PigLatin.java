@@ -3,6 +3,12 @@ import java.util.*;
 public class PigLatin {
   public static String pigLatinSimple(String s){
     String temp = s.toLowerCase();
+    if (temp.length() < 2) {
+      if ((temp.charAt(0) == 'a') || (temp.charAt(0) == 'e') || (temp.charAt(0) == 'i') || (temp.charAt(0) == 'o') || (temp.charAt(0) == 'u')) {
+        return temp + "hay";
+      }
+      else return temp + "ay";
+    }
     String lala = "";
     if ((temp.charAt(0) == 'a') || (temp.charAt(0) == 'e') || (temp.charAt(0) == 'i') || (temp.charAt(0) == 'o') || (temp.charAt(0) == 'u')) {
       lala = temp + "hay";
@@ -16,12 +22,18 @@ public class PigLatin {
   public static String pigLatin(String s){
     String[] diagraphs = {"bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl", "pr", "qu", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"};
     boolean has = false;
+    String temp = s.toLowerCase();
+    if (temp.length() < 2) {
+      if ((temp.charAt(0) == 'a') || (temp.charAt(0) == 'e') || (temp.charAt(0) == 'i') || (temp.charAt(0) == 'o') || (temp.charAt(0) == 'u')) {
+        return temp + "hay";
+      }
+      else return temp + "ay";
+    }
     for (String item : diagraphs) {
-      if (s.substring(0,2).equals(item)) {
+      if (temp.substring(0,2).equals(item)) {
         has = true;
       }
     }
-    String temp = s.toLowerCase();
     String lala = "";
     if (has) {
       lala = temp.substring(2,temp.length()) + temp.substring(0,2) + "ay";
@@ -40,7 +52,10 @@ public class PigLatin {
     char last = temp.charAt(temp.length()-1);
     char first = temp.charAt(0);
     if (temp.length() < 2) {
-      return temp + "hay";
+      if ((temp.charAt(0) == 'a') || (temp.charAt(0) == 'e') || (temp.charAt(0) == 'i') || (temp.charAt(0) == 'o') || (temp.charAt(0) == 'u')) {
+        return temp + "hay";
+      }
+      else return temp + "ay";
     }
     if ((first < 97) || (first > 122)) {
       return temp;
@@ -70,6 +85,5 @@ public class PigLatin {
       }
       count++;
     }
-    System.out.println();
   }
 }
