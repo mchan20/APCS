@@ -44,6 +44,22 @@ public class MyLinkedList{
     return value;
   }
 
+  public String toString() {
+    String ans = "";
+    Node current = start;
+    int count = 0;
+    while (current != null) {
+      if (count == 0) {
+        ans = ans + current.getData();
+      }
+      else {
+        ans = ans + ", " + current.getData();
+      }
+      count++;
+      current = current.getNext();
+    }
+    return ans;
+  }
 
   public void thingy() {
     Node current = start;
@@ -68,12 +84,13 @@ public class MyLinkedList{
     hi.add("three");
     hi.add("three");
     hi.add("three");
-    hi.add(2,"two point five");
-    hi.thingy();
-    System.out.println();
-    hi.set(2,"one point five");
-    hi.thingy();
-    System.out.println();
-    System.out.println(hi.get(1));
+    // hi.add(2,"two point five");
+    // hi.thingy();
+    // System.out.println();
+    // hi.set(2,"one point five");
+    // hi.thingy();
+    // System.out.println();
+    // System.out.println(hi.get(1));
+    System.out.println(hi.toString());
   }
 }
