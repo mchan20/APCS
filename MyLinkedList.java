@@ -24,12 +24,18 @@ public class MyLinkedList{
     size++;
     return true;
   }
-  // public void add(int index, String value) {
-  //   Node n = new Node(value);
-  //
-  // }
+  public void add(int index, String value) {
+    Node n = new Node(value);
+    n.setPrev(getNode(index-1));
+    n.setNext(getNode(index));
+    getNode(index-1).setNext(n);
+    getNode(index).setPrev(n);
+    size++;
+  }
   // public String get(int index);
   // public String set(int index, String value);
+
+
   public void thingy() {
     Node current = start;
     while (current != null) {
@@ -50,6 +56,10 @@ public class MyLinkedList{
     MyLinkedList hi = new MyLinkedList();
     hi.add("one");
     hi.add("two");
+    hi.add("three");
+    hi.add("three");
+    hi.add("three");
+    hi.add(2,"two point five");
     hi.thingy();
   }
 }
