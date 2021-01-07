@@ -18,20 +18,38 @@ public class MyLinkedList{
       end = n;
     }
     else {
+      end.setNext(n);
       end = n;
     }
     size++;
     return true;
   }
-  // public boolean add(int index, String value);
+  // public void add(int index, String value) {
+  //   Node n = new Node(value);
+  //
+  // }
   // public String get(int index);
   // public String set(int index, String value);
-  public String toString() {
+  public void thingy() {
+    Node current = start;
+    while (current != null) {
+      System.out.println(current.getData());
+      current = current.getNext();
+    }
+  }
 
+  private Node getNode(int index) {
+    Node current = start;
+    for (int i=0; i<index;i++) {
+      current = current.getNext();
+    }
+    return current;
   }
   // //Any helper method that returns a Node object MUST BE PRIVATE!
   public static void main(String[] args) {
     MyLinkedList hi = new MyLinkedList();
-    hi.add()
+    hi.add("one");
+    hi.add("two");
+    hi.thingy();
   }
 }

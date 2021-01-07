@@ -15,7 +15,7 @@ public class Node{
     data = value;
   }
 
-  private Node getNext() {
+  public Node getNext() {
     return next;
   }
 
