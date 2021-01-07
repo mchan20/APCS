@@ -25,6 +25,9 @@ public class MyLinkedList{
     return true;
   }
   public void add(int index, String value) {
+    if (index < 0 || index > size) {
+      throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
+    }
     Node n = new Node(value);
     n.setPrev(getNode(index-1));
     n.setNext(getNode(index));
@@ -33,9 +36,15 @@ public class MyLinkedList{
     size++;
   }
   public String get(int index) {
+    if (index < 0 || index > size) {
+      throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
+    }
     return getNode(index).getData();
   }
   public String set(int index, String value) {
+    if (index < 0 || index > size) {
+      throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
+    }
     Node n = new Node(value);
     n.setPrev(getNode(index-1));
     n.setNext(getNode(index+1));
