@@ -35,7 +35,14 @@ public class MyLinkedList{
   public String get(int index) {
     return getNode(index).getData();
   }
-  // public String set(int index, String value);
+  public String set(int index, String value) {
+    Node n = new Node(value);
+    n.setPrev(getNode(index-1));
+    n.setNext(getNode(index+1));
+    getNode(index-1).setNext(n);
+    getNode(index+1).setPrev(n);
+    return value;
+  }
 
 
   public void thingy() {
@@ -62,6 +69,9 @@ public class MyLinkedList{
     hi.add("three");
     hi.add("three");
     hi.add(2,"two point five");
+    hi.thingy();
+    System.out.println();
+    hi.set(2,"one point five");
     hi.thingy();
     System.out.println();
     System.out.println(hi.get(1));
