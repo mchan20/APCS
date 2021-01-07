@@ -32,7 +32,9 @@ public class MyLinkedList{
     getNode(index).setPrev(n);
     size++;
   }
-  // public String get(int index);
+  public String get(int index) {
+    return getNode(index).getData();
+  }
   // public String set(int index, String value);
 
 
@@ -61,5 +63,7 @@ public class MyLinkedList{
     hi.add("three");
     hi.add(2,"two point five");
     hi.thingy();
+    System.out.println();
+    System.out.println(hi.get(1));
   }
 }
