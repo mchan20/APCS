@@ -70,7 +70,18 @@ public class MyLinkedList{
     return ans;
   }
 
-  public void thingy() {
+  public String remove(int index) {
+    if (index < 0 || index > size) {
+      throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
+    }
+    String result = getNode(index).getData();
+    getNode(index-1).setNext(getNode(index+1));
+    getNode(index+1).setPrev(getNode(index-1));
+    size--;
+    return result;
+  }
+
+  public void printelements() {
     Node current = start;
     while (current != null) {
       System.out.println(current.getData());
@@ -92,14 +103,9 @@ public class MyLinkedList{
     hi.add("two");
     hi.add("three");
     hi.add("three");
+    hi.add(2,"two point five");
+    hi.remove(2);
     hi.add("three");
-    // hi.add(2,"two point five");
-    // hi.thingy();
-    // System.out.println();
-    // hi.set(2,"one point five");
-    // hi.thingy();
-    // System.out.println();
-    // System.out.println(hi.get(1));
     System.out.println(hi.toString());
   }
 }
