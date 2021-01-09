@@ -23,7 +23,7 @@ public class Node{
     next = other;
   }
 
-  private Node getPrev() {
+  public Node getPrev() {
     return prev;
   }
 

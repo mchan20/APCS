@@ -70,6 +70,23 @@ public class MyLinkedList{
     return ans;
   }
 
+  public String toStringReversed() {
+    String ans = "";
+    Node current = end;
+    int count = 0;
+    while (current != null) {
+      if (count == 0) {
+        ans = ans + current.getData();
+      }
+      else {
+        ans = ans + ", " + current.getData();
+      }
+      count++;
+      current = current.getPrev();
+    }
+    return ans;
+  }
+
   public String remove(int index) {
     if (index < 0 || index > size) {
       throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
@@ -84,6 +101,7 @@ public class MyLinkedList{
   public void extend(MyLinkedList other){
     end.setNext(other.getNode(0));
     other.getNode(0).setPrev(end);
+    end = other.getNode(other.size()-1);
     size = size() + other.size();
     other.clear();
   }
@@ -136,5 +154,7 @@ public class MyLinkedList{
     a.extend(b);
     System.out.println("A:"+a+a.size());
     System.out.println("B:"+b+b.size());
+    System.out.println("A reversed:"+a.toStringReversed()+a.size());
+    System.out.println("B reversed:"+b.toStringReversed()+b.size());
   }
 }
