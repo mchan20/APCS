@@ -128,33 +128,33 @@ public class MyLinkedList{
     size = 0;
   }
   // //Any helper method that returns a Node object MUST BE PRIVATE!
-  public static void main(String[] args) {
-    // MyLinkedList hi = new MyLinkedList();
-    // hi.add("one");
-    // hi.add("two");
-    // hi.add("three");
-    // hi.add("three");
-    // hi.add(2,"two point five");
-    // hi.remove(2);
-    // hi.add("three");
-    // System.out.println(hi.toString());
-    MyLinkedList a = new MyLinkedList();
-    MyLinkedList b = new MyLinkedList();
-    for(int i = 0; i < 10; i++){
-      if(i < 5){
-        a.add(i+"");
-      }else{
-        b.add(i+"");
-      }
-    }
-    System.out.println();
-    System.out.println("A:"+a+a.size());
-    System.out.println("B:"+b+b.size());
-
-    a.extend(b);
-    System.out.println("A:"+a+a.size());
-    System.out.println("B:"+b+b.size());
-    System.out.println("A reversed:"+a.toStringReversed()+a.size());
-    System.out.println("B reversed:"+b.toStringReversed()+b.size());
-  }
+  // public static void main(String[] args) {
+  //   // MyLinkedList hi = new MyLinkedList();
+  //   // hi.add("one");
+  //   // hi.add("two");
+  //   // hi.add("three");
+  //   // hi.add("three");
+  //   // hi.add(2,"two point five");
+  //   // hi.remove(2);
+  //   // hi.add("three");
+  //   // System.out.println(hi.toString());
+  //   MyLinkedList a = new MyLinkedList();
+  //   MyLinkedList b = new MyLinkedList();
+  //   for(int i = 0; i < 10; i++){
+  //     if(i < 5){
+  //       a.add(i+"");
+  //     }else{
+  //       b.add(i+"");
+  //     }
+  //   }
+  //   System.out.println();
+  //   System.out.println("A:"+a+a.size());
+  //   System.out.println("B:"+b+b.size());
+  //
+  //   a.extend(b);
+  //   System.out.println("A:"+a+a.size());
+  //   System.out.println("B:"+b+b.size());
+  //   System.out.println("A reversed:"+a.toStringReversed()+a.size());
+  //   System.out.println("B reversed:"+b.toStringReversed()+b.size());
+  // }
 }
