@@ -18,10 +18,10 @@ public class Sorts{
       int index = i;
       for (int j=i+1;j<data.length;j++) {
         if (data[j] < data[index]) index = j;
-        int temp = data[index];
-        data[index] = data[i];
-        data[i] = temp;
       }
+      int temp = data[index];
+      data[index] = data[i];
+      data[i] = temp;
     }
   }
 
