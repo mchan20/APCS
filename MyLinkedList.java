@@ -29,27 +29,52 @@ public class MyLinkedList{
       throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
     }
     Node n = new Node(value);
-    n.setPrev(getNode(index-1));
-    n.setNext(getNode(index));
-    getNode(index-1).setNext(n);
-    getNode(index).setPrev(n);
+    if (index == 0) {
+      n.setNext(start);
+      start.setPrev(n);
+      start = n;
+    }
+    else if (index == size()) {
+      n.setPrev(end);
+      end.setNext(n);
+      end = n;
+    }
+    else {
+      Node temp = 
+      n.setPrev(getNode(index-1));
+      n.setNext(getNode(index));
+      getNode(index-1).setNext(n);
+      getNode(index).setPrev(n);
+    }
     size++;
   }
   public String get(int index) {
-    if (index < 0 || index > size) {
+    if (index < 0 || index >= size) {
       throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
     }
     return getNode(index).getData();
   }
   public String set(int index, String value) {
-    if (index < 0 || index > size) {
+    if (index < 0 || index >= size) {
       throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
     }
     Node n = new Node(value);
-    n.setPrev(getNode(index-1));
-    n.setNext(getNode(index+1));
-    getNode(index-1).setNext(n);
-    getNode(index+1).setPrev(n);
+    if (index == 0) {
+      n.setNext(getNode(index+1));
+      getNode(index+1).setPrev(n);
+      start = n;
+    }
+    else if (index == (size()-1)) {
+      end = n;
+      end.setPrev(getNode(index-1));
+      getNode(index-1).setNext(end);
+    }
+    else {
+      n.setPrev(getNode(index-1));
+      n.setNext(getNode(index+1));
+      getNode(index-1).setNext(n);
+      getNode(index+1).setPrev(n);
+    }
     return value;
   }
 
@@ -88,12 +113,22 @@ public class MyLinkedList{
   }
 
   public String remove(int index) {
-    if (index < 0 || index > size) {
+    if (index < 0 || index >= size) {
       throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
     }
     String result = getNode(index).getData();
-    getNode(index-1).setNext(getNode(index+1));
-    getNode(index+1).setPrev(getNode(index-1));
+    if (index == 0) {
+      start = getNode(1);
+      start.setPrev(null);
+    }
+    else if (index == (size()-1)) {
+      end = getNode(index-1);
+      end.setNext(null);
+    }
+    else{
+      getNode(index-1).setNext(getNode(index+1));
+      getNode(index+1).setPrev(getNode(index-1));
+    }
     size--;
     return result;
   }
@@ -111,6 +146,14 @@ public class MyLinkedList{
     while (current != null) {
       System.out.println(current.getData());
       current = current.getNext();
+    }
+  }
+
+  public void printElementsRev() {
+    Node current = end;
+    while (current != null) {
+      System.out.println(current.getData());
+      current = current.getPrev();
     }
   }
 
@@ -157,4 +200,21 @@ public class MyLinkedList{
   //   System.out.println("A reversed:"+a.toStringReversed()+a.size());
   //   System.out.println("B reversed:"+b.toStringReversed()+b.size());
   // }
+  public static void main(String[] args) {
+    MyLinkedList hi = new MyLinkedList();
+    hi.add("one");
+    hi.add("two");
+    hi.add(0,"thing");
+    hi.add(2,"thing1");
+    // hi.set(0,"thing2");
+    // // hi.set(hi.size()-1,"lol");
+    // System.out.println(hi.toString());
+    // hi.remove(1);
+    // // hi.remove(hi.size());
+    System.out.println(hi.toString());
+    //
+    // System.out.println(hi.toStringReversed());
+
+    hi.printElementsRev();
+  }
 }
