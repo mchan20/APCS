@@ -30,9 +30,15 @@ public class MyLinkedList{
     }
     Node n = new Node(value);
     if (index == 0) {
-      n.setNext(start);
-      start.setPrev(n);
-      start = n;
+      if (size() > 0) {
+        n.setNext(start);
+        start.setPrev(n);
+        start = n;
+      }
+      else {
+        start = n;
+        end = n;
+      }
     }
     else if (index == size()) {
       n.setPrev(end);
@@ -61,14 +67,22 @@ public class MyLinkedList{
     }
     Node n = new Node(value);
     if (index == 0) {
-      n.setNext(getNode(index+1));
-      getNode(index+1).setPrev(n);
-      start = n;
+      if (size() > 1) {
+        Node next = getNode(index+1);
+        n.setNext(next);
+        next.setPrev(n);
+        start = n;
+      }
+      else {
+        start = n;
+        end = n;
+      }
     }
     else if (index == (size()-1)) {
+      Node prev = getNode(index-1);
+      n.setPrev(prev);
+      prev.setNext(n);
       end = n;
-      end.setPrev(getNode(index-1));
-      getNode(index-1).setNext(end);
     }
     else {
       Node prev = getNode(index-1);
@@ -82,7 +96,7 @@ public class MyLinkedList{
   }
 
   public String toString() {
-    String ans = "";
+    String ans = "[";
     Node current = start;
     int count = 0;
     while (current != null) {
@@ -95,11 +109,11 @@ public class MyLinkedList{
       count++;
       current = current.getNext();
     }
-    return ans;
+    return ans + "]";
   }
 
   public String toStringReversed() {
-    String ans = "";
+    String ans = "[";
     Node current = end;
     int count = 0;
     while (current != null) {
@@ -112,7 +126,7 @@ public class MyLinkedList{
       count++;
       current = current.getPrev();
     }
-    return ans;
+    return ans + "]";
   }
 
   public String remove(int index) {
@@ -121,8 +135,20 @@ public class MyLinkedList{
     }
     String result = getNode(index).getData();
     if (index == 0) {
-      start = getNode(1);
-      start.setPrev(null);
+      if (size() > 2) {
+        start = getNode(1);
+        start.setPrev(null);
+      }
+      else if (size() == 2) {
+        Node thing = getNode(1);
+        start = thing;
+        thing.setPrev(null);
+        end = thing;
+      }
+      else {
+        start = null;
+        end = null;
+      }
     }
     else if (index == (size()-1)) {
       end = getNode(index-1);
