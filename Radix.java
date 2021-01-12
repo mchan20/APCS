@@ -9,8 +9,8 @@ public class Radix {
     return result.length();
   }
 
-  public static void merge(MyLinkedList original,MyLinkedList[]buckets) {
-    for(MyLinkedList m : buckets) {
+  public static void merge( SortableLinkedList original, SortableLinkedList[]buckets) {
+    for(SortableLinkedList m : buckets) {
       original.extend(m);
     }
   }
