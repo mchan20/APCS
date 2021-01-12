@@ -50,14 +50,20 @@ public class Radix {
       else positive.add(lala);
     }
     clear(data);
-    radixSortSimple(positive);
     if (negative.size() > 0) {
       radixSortSimple(negative);
       for(int i=negative.size()-1;i>=0;i--) {
         data.add(negative.get(i)*-1);
       }
+      if (positive.size() > 0) {
+        radixSortSimple(positive);
+        data.extend(positive);
+      }
     }
-    data.extend(positive);
+    else {
+      radixSortSimple(positive);
+      data.extend(positive);
+    }
   }
 
   public static void clear(SortableLinkedList list) {
@@ -68,13 +74,13 @@ public class Radix {
 
   public static void main(String[] args) {
     SortableLinkedList hi = new SortableLinkedList();
-    hi.add(0);
-    hi.add(271);
-    hi.add(-71);
+    // hi.add(0);
+    hi.add(-271);
+    hi.add(-701);
     hi.add(-72);
     hi.add(-74);
     hi.add(-111);
-    hi.add(91);
+    hi.add(-91);
     System.out.println(hi.toString());
     radixSort(hi);
     System.out.println(hi.toString());
