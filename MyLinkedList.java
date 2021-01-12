@@ -165,11 +165,21 @@ public class MyLinkedList{
   }
 
   public void extend(MyLinkedList other){
-    end.setNext(other.getNode(0));
-    other.getNode(0).setPrev(end);
-    end = other.getNode(other.size()-1);
-    size = size() + other.size();
-    other.clear();
+    if (other.size() != 0) {
+      if (size() == 0) {
+        Node lala = other.getNode(0);
+        Node thing = other.getNode(other.size()-1);
+        start = lala;
+        end = thing;
+      }
+      else {
+        end.setNext(other.getNode(0));
+        other.getNode(0).setPrev(end);
+        end = other.getNode(other.size()-1);
+      }
+      size = size() + other.size();
+      other.clear();
+    }
   }
 
   public void printElements() {
