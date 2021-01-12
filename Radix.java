@@ -72,17 +72,17 @@ public class Radix {
   }
 
 
-  public static void main(String[] args) {
-    SortableLinkedList hi = new SortableLinkedList();
-    // hi.add(0);
-    hi.add(-271);
-    hi.add(-701);
-    hi.add(-72);
-    hi.add(-74);
-    hi.add(-111);
-    hi.add(-91);
-    System.out.println(hi.toString());
-    radixSort(hi);
-    System.out.println(hi.toString());
-  }
+  // public static void main(String[] args) {
+  //   SortableLinkedList hi = new SortableLinkedList();
+  //   // hi.add(0);
+  //   hi.add(-271);
+  //   hi.add(-701);
+  //   hi.add(-72);
+  //   hi.add(-74);
+  //   hi.add(-111);
+  //   hi.add(-91);
+  //   System.out.println(hi.toString());
+  //   radixSort(hi);
+  //   System.out.println(hi.toString());
+  // }
 }
