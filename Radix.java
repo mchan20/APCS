@@ -26,23 +26,13 @@ public class Radix {
     for (int i=0;i<maxCol;i++) {
       // for (int j=0;j<data.size();j++) {
       //   lala = data.get(j);
-      //   if (lala < Math.pow(10,i)) {
-      //     buckets[0].add(lala);
-      //   }
-      //   else {
-      //     buckets[nth(lala,i)].add(lala);
-      //   }
+      //    buckets[nth(lala,i)].add(lala);
       //   if (length(lala) > maxCol) maxCol = length(lala);
       // }
       // clear(data);
       while (data.size() > 0) {
         lala = data.get(0);
-        if (lala < Math.pow(10,i)) {
-          buckets[0].add(lala);
-        }
-        else {
-          buckets[nth(lala,i)].add(lala);
-        }
+        buckets[nth(lala,i)].add(lala);
         if (length(lala) > maxCol) maxCol = length(lala);
         data.remove(0);
       }
