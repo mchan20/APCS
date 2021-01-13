@@ -16,7 +16,7 @@ public class Radix {
   }
 
   public static void radixSortSimple(SortableLinkedList data) {
-    int lala = 0;
+    int lala = data.get(0);
     SortableLinkedList[] buckets = new SortableLinkedList[10];
     for (int i=0;i<10;i++) {
       buckets[i] = new SortableLinkedList();
@@ -24,8 +24,19 @@ public class Radix {
     SortableLinkedList temp = new SortableLinkedList();
     int maxCol = length(data.get(0));
     for (int i=0;i<maxCol;i++) {
-      for (int j=0;j<data.size();j++) {
-        lala = data.get(j);
+      // for (int j=0;j<data.size();j++) {
+      //   lala = data.get(j);
+      //   if (lala < Math.pow(10,i)) {
+      //     buckets[0].add(lala);
+      //   }
+      //   else {
+      //     buckets[nth(lala,i)].add(lala);
+      //   }
+      //   if (length(lala) > maxCol) maxCol = length(lala);
+      // }
+      // clear(data);
+      while (data.size() > 0) {
+        lala = data.get(0);
         if (lala < Math.pow(10,i)) {
           buckets[0].add(lala);
         }
@@ -33,8 +44,8 @@ public class Radix {
           buckets[nth(lala,i)].add(lala);
         }
         if (length(lala) > maxCol) maxCol = length(lala);
+        data.remove(0);
       }
-      clear(data);
       merge(data, buckets);
     }
   }
