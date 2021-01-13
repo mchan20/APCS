@@ -45,16 +45,26 @@ public class Radix {
     int thing = 0;
     SortableLinkedList negative = new SortableLinkedList();
     SortableLinkedList positive = new SortableLinkedList();
-    for(int i=0;i<data.size();i++) {
-      lala = data.get(i);
+    // for(int i=0;i<data.size();i++) {
+    //   lala = data.get(i);
+    //   if (lala < 0) negative.add(lala*-1);
+    //   else positive.add(lala);
+    // }
+    while (data.size() > 0) {
+      lala = data.get(0);
       if (lala < 0) negative.add(lala*-1);
       else positive.add(lala);
+      data.remove(0);
     }
-    clear(data);
     if (negative.size() > 0) {
       radixSortSimple(negative);
-      for(int i=negative.size()-1;i>=0;i--) {
-        data.add(negative.get(i)*-1);
+      // for(int i=negative.size()-1;i>=0;i--) {
+      //   data.add(negative.get(i)*-1);
+      // }
+      while (negative.size() > 0) {
+        lala = data.get(negative.size()-1);
+        data.add(lala*-1);
+        negative.remove(negative.size()-1);
       }
       if (positive.size() > 0) {
         radixSortSimple(positive);
