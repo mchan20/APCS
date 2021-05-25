@@ -2,7 +2,7 @@ PImage background;
 int money;
 int numberKilled;
 int waveNumber;
-ArrayList<Enemies> dings;
+ArrayList<Enemy> dings;
 
 void setup() {
   size(804,445); //size of image (will probably make slightly bigger)
@@ -11,7 +11,7 @@ void setup() {
   numberKilled = 0;
   waveNumber = 0;
   for(int i = 0;i<10;i++) {
-    dings.add(new Enemies());
+    dings.add(new Enemies()); //creating 10 enemies (kinda like that cow lab)
   }
 }
 
@@ -22,7 +22,7 @@ void draw() {
   text("money: "        + money + "\n" 
      + "numberKilled: " + numberKilled + "\n"
      + "waveNumber: "   + waveNumber,4,20);
-  for(Enemies a : dings) {
+  //for(Enemy a : dings) {
     
-  }
+  //}
 }
