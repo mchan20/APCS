@@ -7,15 +7,16 @@ public class Enemy {
     moneyDrop = 5;
     step = 0;
   }
-}
-
-void display() {
-  fill(153);
-  ellipse(40, 50, 10, 10);
-}
-
-public class Goblin extends Enemy {
-   Goblin(int path) {
-     super(path);
-   }
+  
+  void display(float x,float y) {
+    fill(153);
+    ellipse(x, y, 10, 10);
+  }
+  
+  int getStep() {
+    return step;
+  }
+  void move() {
+    step++;
+  }
 }

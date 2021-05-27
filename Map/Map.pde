@@ -23,11 +23,8 @@ void draw() {
   text("money: "        + money + "\n" 
      + "numberKilled: " + numberKilled + "\n"
      + "waveNumber: "   + waveNumber,4,20);
-  for(Enemy a : dings) {
-    a.display();
-  }
-  
   //for pathing purposes
+  fill(0);
   text("X: " + mouseX + "\n" 
      + "Y: " + mouseY,4,410);
   Path path1 = new Path(12,1,new float[] 
@@ -43,5 +40,12 @@ void draw() {
    352,57,
    372,8});
   path1.showPath();
-  path1.splitPath();
+  ArrayList <Float> newCoords = path1.splitPath();
+  
+  for(Enemy a : dings) {
+    if (((a.getStep()*2)+1) < newCoords.size()-1) {
+      a.move();
+      a.display(newCoords.get(a.getStep()*2),newCoords.get((a.getStep()*2)+1));
+    }
+  }
 }
