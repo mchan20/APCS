@@ -29,7 +29,8 @@ public class Path {
     }
   }
   
-  void splitPath() {
+  ArrayList<Float> splitPath() {
+    ArrayList<Float> pathCoords = new ArrayList<Float>();
     for(int i=0;i<coords.length-2;i=i+2) {
       float bx = coords[i];
       float by = coords[i+1];
@@ -42,8 +43,11 @@ public class Path {
         float t = j / float(steps);
         float x = curvePoint(bx, bx, nx, nx, t);
         float y = curvePoint(by, by, ny, ny, t);
+        pathCoords.add(x);
+        pathCoords.add(y);
         ellipse(x, y, 10, 10);
       }
     }
+    return pathCoords;
   }
 }
