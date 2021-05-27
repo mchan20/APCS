@@ -2,7 +2,7 @@ public class Path {
   //this will hold the curved paths for the Enemies to follow
   int number;
   float[] coords;
-  
+
   Path(int number,float[] coords) {
     this.number = number;
     this.coords = coords;
@@ -29,5 +29,15 @@ public class Path {
     }
     endShape();
     noFill();
+  }
+  
+  void splitPath() {
+    int steps = 6;
+    for (int i = 0; i <= steps; i++) {
+      float t = i / float(steps);
+      float x = curvePoint(coords[0], coords[0], coords[2], coords[coords.length-2], t);
+      float y = curvePoint(coords[1], coords[1], coords[3], coords[coords.length-2], t);
+      ellipse(x, y, 10, 10);
+    }
   }
 }

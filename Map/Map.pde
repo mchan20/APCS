@@ -42,4 +42,5 @@ void draw() {
    352,57,
    372,8});
   path1.showPath();
+  path1.splitPath();
 }
