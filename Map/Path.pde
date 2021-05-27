@@ -2,9 +2,9 @@ public class Path {
   //this will hold the curved paths for the Enemies to follow
   int number;
   float[] coords;
-  int stepsdist;
+  float stepsdist;
 
-  Path(int stepsdist,int number,float[] coords) {
+  Path(int number,float stepsdist,float[] coords) {
     this.number = number;
     this.coords = coords;
     this.stepsdist = stepsdist;
@@ -45,7 +45,7 @@ public class Path {
         float y = curvePoint(by, by, ny, ny, t);
         pathCoords.add(x);
         pathCoords.add(y);
-        ellipse(x, y, 10, 10);
+        //ellipse(x, y, 10, 10);
       }
     }
     return pathCoords;

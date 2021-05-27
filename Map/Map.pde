@@ -12,7 +12,7 @@ void setup() {
   waveNumber = 0;
   dings = new ArrayList<Enemy>();
   for(int i = 0;i<10;i++) {
-    dings.add(new Enemy(1)); //creating 10 enemies (kinda like that cow lab)
+    dings.add(new Enemy(1,2)); //creating 10 enemies (kinda like that cow lab)
   }
 }
 
@@ -27,7 +27,7 @@ void draw() {
   fill(0);
   text("X: " + mouseX + "\n" 
      + "Y: " + mouseY,4,410);
-  Path path1 = new Path(12,1,new float[] 
+  Path path1 = new Path(1,0.5,new float[] 
   {4,378,
    134,378,
    209,279,
@@ -39,13 +39,10 @@ void draw() {
    201,57,
    352,57,
    372,8});
-  path1.showPath();
+  //path1.showPath();
   ArrayList <Float> newCoords = path1.splitPath();
   
   for(Enemy a : dings) {
-    if (((a.getStep()*2)+1) < newCoords.size()-1) {
-      a.move();
-      a.display(newCoords.get(a.getStep()*2),newCoords.get((a.getStep()*2)+1));
-    }
+    a.move(newCoords);
   }
 }
