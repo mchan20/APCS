@@ -3,7 +3,7 @@ public class Path {
   int number;
   float[] coords;
   
-  Path(int number,int[] coords) {
+  Path(int number,float[] coords) {
     this.number = number;
     this.coords = coords;
   }
@@ -22,8 +22,12 @@ public class Path {
     for(int i=0;i<coords.length;i=i+2) {
       float x = coords[i];
       float y = coords[i+1];
+      if ((i == 0) || (i == coords.length-2)) {
+        curveVertex(x, y);
+      }
       curveVertex(x, y);
     }
     endShape();
+    noFill();
   }
 }
