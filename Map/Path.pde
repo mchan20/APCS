@@ -2,12 +2,12 @@ public class Path {
   //this will hold the curved paths for the Enemies to follow
   int number;
   float[] coords;
-  int steps;
+  int stepsdist;
 
-  Path(int steps,int number,float[] coords) {
+  Path(int stepsdist,int number,float[] coords) {
     this.number = number;
     this.coords = coords;
-    this.steps = steps;
+    this.stepsdist = stepsdist;
   }
   
   int[] showCoords(int step) {
@@ -31,14 +31,15 @@ public class Path {
   
   void splitPath() {
     for(int i=0;i<coords.length-2;i=i+2) {
+      float bx = coords[i];
+      float by = coords[i+1];
+      float nx = coords[i+2];
+      float ny = coords[i+3];
+      float dist = dist(bx,by,nx,ny);
+      
+      int steps = int(dist / stepsdist);
       for (int j = 0; j <= steps; j++) {
         float t = j / float(steps);
-        
-        float bx = coords[i];
-        float by = coords[i+1];
-        float nx = coords[i+2];
-        float ny = coords[i+3];
-        
         float x = curvePoint(bx, bx, nx, nx, t);
         float y = curvePoint(by, by, ny, ny, t);
         ellipse(x, y, 10, 10);
