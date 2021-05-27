@@ -23,9 +23,9 @@ void draw() {
   text("money: "        + money + "\n" 
      + "numberKilled: " + numberKilled + "\n"
      + "waveNumber: "   + waveNumber,4,20);
-  //for(Enemy a : dings) {
-    
-  //}
+  for(Enemy a : dings) {
+    a.display();
+  }
   
   //for pathing purposes
   text("X: " + mouseX + "\n" 

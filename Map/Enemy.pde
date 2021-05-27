@@ -9,6 +9,11 @@ public class Enemy {
   }
 }
 
+void display() {
+  fill(153);
+  ellipse(40, 50, 10, 10);
+}
+
 public class Goblin extends Enemy {
    Goblin(int path) {
      super(path);
