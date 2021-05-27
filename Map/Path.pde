@@ -2,10 +2,12 @@ public class Path {
   //this will hold the curved paths for the Enemies to follow
   int number;
   float[] coords;
+  int steps;
 
-  Path(int number,float[] coords) {
+  Path(int steps,int number,float[] coords) {
     this.number = number;
     this.coords = coords;
+    this.steps = steps;
   }
   
   int[] showCoords(int step) {
@@ -18,26 +20,29 @@ public class Path {
   
   void showPath() {
     noFill();
-    beginShape();
-    for(int i=0;i<coords.length;i=i+2) {
+    for(int i=0;i<coords.length-2;i=i+2) {
       float x = coords[i];
       float y = coords[i+1];
-      if ((i == 0) || (i == coords.length-2)) {
-        curveVertex(x, y);
-      }
-      curveVertex(x, y);
+      float nx = coords[i+2];
+      float ny = coords[i+3];
+      curve(x,y,x,y,nx,ny,nx,ny);
     }
-    endShape();
-    noFill();
   }
   
   void splitPath() {
-    int steps = 6;
-    for (int i = 0; i <= steps; i++) {
-      float t = i / float(steps);
-      float x = curvePoint(coords[0], coords[0], coords[2], coords[coords.length-2], t);
-      float y = curvePoint(coords[1], coords[1], coords[3], coords[coords.length-2], t);
-      ellipse(x, y, 10, 10);
+    for(int i=0;i<coords.length-2;i=i+2) {
+      for (int j = 0; j <= steps; j++) {
+        float t = j / float(steps);
+        
+        float bx = coords[i];
+        float by = coords[i+1];
+        float nx = coords[i+2];
+        float ny = coords[i+3];
+        
+        float x = curvePoint(bx, bx, nx, nx, t);
+        float y = curvePoint(by, by, ny, ny, t);
+        ellipse(x, y, 10, 10);
+      }
     }
   }
 }

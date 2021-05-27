@@ -30,7 +30,7 @@ void draw() {
   //for pathing purposes
   text("X: " + mouseX + "\n" 
      + "Y: " + mouseY,4,410);
-  Path path1 = new Path(1,new float[] 
+  Path path1 = new Path(7,1,new float[] 
   {4,378,
    134,378,
    209,279,
@@ -38,6 +38,7 @@ void draw() {
    419,226,
    419,171,
    211,165,
+   178,117,
    201,57,
    352,57,
    372,8});
