@@ -2,7 +2,8 @@ PImage background;
 int money;
 int numberKilled;
 int waveNumber;
-ArrayList<Enemy> dings;
+ArrayList<Enemy> enemies;
+ArrayList<Tower> towers;
 
 void setup() {
   size(804,445); //size of image (will probably make slightly bigger)
@@ -10,9 +11,13 @@ void setup() {
   money = 0; 
   numberKilled = 0;
   waveNumber = 0;
-  dings = new ArrayList<Enemy>();
+  enemies = new ArrayList<Enemy>();
+  towers = new ArrayList<Tower>();
   for(int i = 0;i<10;i++) {
-    dings.add(new Enemy(1,2)); //creating 10 enemies (kinda like that cow lab)
+    enemies.add(new Enemy(1,2)); //creating 10 enemies (kinda like that cow lab)
+  }
+  for(int i = 0;i<1;i++) {
+    towers.add(new Tower(1,1.0,1.0,247,323)); //creating 10 enemies (kinda like that cow lab)
   }
 }
 
@@ -42,7 +47,10 @@ void draw() {
   //path1.showPath();
   ArrayList <Float> newCoords = path1.splitPath();
   
-  for(Enemy a : dings) {
+  for(Enemy a : enemies) {
     a.move(newCoords);
+  }
+  for(Tower b : towers) {
+    b.display();
   }
 }
