@@ -26,13 +26,36 @@ public class Tower {
        if (inEllipse(mouseX,mouseY)) {
            selected = true;
        }
-       else selected = false;
+       else deselect();
      }
    }
+  
+  void deselect() {
+    selected = false;
+  }
+  
+  void selected() {
+    
+  }
+  
   boolean inEllipse(float x, float y) {
     int result = 
     ((int)Math.pow((x - xloc), 2) / (int)Math.pow(49/2, 2)) 
   + ((int)Math.pow((y - yloc), 2) / (int)Math.pow(17/2, 2));
     return result <= 1;
   }
+}
+
+public class Ranged extends Tower {
+  Ranged(float xloc, float yloc) {
+    super(10, 1.0,1.0,xloc,yloc);
+  }
+  
+  void display() {
+    fill(0);
+    rectMode(CORNER);
+    rect(xloc-48/2,yloc-17/2,49,17);
+  }
+  
+  
 }
