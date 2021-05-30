@@ -1,5 +1,5 @@
 public class Tower {
-  int atk;
+  int atk,level,price;
   float atkRng,atkSpd;
   float xloc, yloc;
   boolean selected;
@@ -10,15 +10,17 @@ public class Tower {
     this.atkSpd = atkSpd;
     this.xloc = xloc;
     this.yloc = yloc;
+    level = 0;
+    price = 0;
   }
   
-  void display() {
+  void display(ArrayList<Shop> shops) {
     // basically just displays an invisible ellipse at the marked locations
     fill(0);
     ellipse(xloc, yloc, 49,17);
     noFill();
     click();
-    if (selected == true) text("hello", xloc + 50, yloc + 50);
+    if (selected == true) shops.add(new Shop(level,price));
   }
   
   void click(){
