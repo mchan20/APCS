@@ -14,16 +14,20 @@ public class Tower {
     price = 0;
   }
   
-  void display(ArrayList<Tower> towers) {
+  void display() {
     // basically just displays an invisible ellipse at the marked locations
     //level 0
     if (level == 0) {
       fill(0);
       ellipse(xloc, yloc, 49,17);
       noFill();
-      if (selected == true) selectedFirst(towers);
     }
     click();
+  }
+  
+  int selection(ArrayList<Tower> towers, int money) {
+    if (selected == true) return selectedFirst(towers, money);
+    else return 0;
   }
   
   void click(){
@@ -45,9 +49,14 @@ public class Tower {
       towers.add(new Ranged(xloc,yloc));
       towers.remove(curr);
     }
+    else if (type == 1) {
+      int curr = towers.indexOf(this);
+      towers.add(new Magic(xloc,yloc));
+      towers.remove(curr);
+    }
   }
   
-  void selectedFirst(ArrayList<Tower> towers) {
+  int selectedFirst(ArrayList<Tower> towers,int money) {
     //menu box
     rectMode(CENTER);
     fill(95,85,85,191);
@@ -61,9 +70,10 @@ public class Tower {
     fill(0);
     text("Ranged",804/2-120-40,253);
     if (menuClick(804/2-120,253, 80,45)) {
-      text("thing",300,300);
-      upgrade(0,towers);
-      level++;
+      if (money > 200) {
+        upgrade(0,towers);
+        return 200;
+      }
     }
     
     //Magic button
@@ -72,8 +82,12 @@ public class Tower {
     fill(0);
     text("Magic",804/2-15,253);
     if (menuClick(804/2,253,80,45)) {
-      level = 0;
+      if (money > 400) {
+        upgrade(1,towers);
+        return 400;
+      }
     }
+    
     //cancel button
     fill(95,85,85,191);
     rect(803/2+120,253,80,45);
@@ -82,6 +96,7 @@ public class Tower {
     if (menuClick(803/2+120,253,80,45)) {
       selected = false;
     }
+    return 0;
   }
   
   void selected() {
@@ -137,13 +152,25 @@ public class Tower {
 public class Ranged extends Tower {
   Ranged(float xloc, float yloc) {
     super(10, 1.0,1.0,xloc,yloc);
+    level = 1;
   }
   
-  void display(ArrayList<Tower> towers) {
+  void display() {
     fill(0);
     rectMode(CORNER);
     rect(xloc-48/2,yloc-17/2,49,17);
   }
+}
+
+public class Magic extends Tower {
+  Magic(float xloc, float yloc) {
+    super(10, 1.0,1.0,xloc,yloc);
+    level = 1;
+  }
   
-  
+  void display() {
+    fill(0);
+    rectMode(CORNER);
+    rect(xloc-48/2,yloc-17/2,49*2,17*2);
+  }
 }

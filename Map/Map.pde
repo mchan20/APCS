@@ -52,8 +52,9 @@ void draw() {
     a.move(newCoords);
   }
   for(int b=0;b<towers.size();b++) {
-    towers.get(b).display(towers);
+    towers.get(b).display();
+    money = money - towers.get(b).selection(towers, money);
   }
   println(towers.size());
-  //money++;
+  money++;
 }
