@@ -26,6 +26,7 @@ void draw() {
   image(background,0,0);
   textSize(20);
   fill(0);
+  textAlign(LEFT);
   text("money: "        + money + "\n" 
      + "numberKilled: " + numberKilled + "\n"
      + "waveNumber: "   + waveNumber,4,20);

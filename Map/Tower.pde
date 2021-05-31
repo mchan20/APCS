@@ -4,6 +4,9 @@ public class Tower {
   float xloc, yloc;
   boolean selected;
   
+  final int priceRanged = 200;
+  final int priceMagic = 500;
+  
   Tower(int atk, float atkRng, float atkSpd, float xloc, float yloc) {
     this.atk = atk;
     this.atkRng = atkRng;
@@ -26,7 +29,7 @@ public class Tower {
   }
   
   int selection(ArrayList<Tower> towers, int money) {
-    if (selected == true) return selectedFirst(towers, money);
+    if (selected == true) return selected(towers, money);
     else return 0;
   }
   
@@ -56,7 +59,7 @@ public class Tower {
     }
   }
   
-  int selectedFirst(ArrayList<Tower> towers,int money) {
+  int selected(ArrayList<Tower> towers,int money) {
     textAlign(RIGHT);
     //menu box
     rectMode(CENTER);
@@ -71,9 +74,9 @@ public class Tower {
     fill(0);
     text("Ranged",804/2-120,253);
     if (menuClick(804/2-120,253, 80,45)) {
-      if (money > 200) {
+      if (money > priceRanged) {
         upgrade(0,towers);
-        return 200;
+        return priceRanged;
       }
     }
     
@@ -83,9 +86,9 @@ public class Tower {
     fill(0);
     text("Magic",804/2,253);
     if (menuClick(804/2,253,80,45)) {
-      if (money > 400) {
+      if (money > priceMagic) {
         upgrade(1,towers);
-        return 400;
+        return priceMagic;
       }
     }
     
@@ -98,41 +101,6 @@ public class Tower {
       selected = false;
     }
     return 0;
-  }
-  
-  void selected() {
-    //menu box
-    rectMode(CENTER);
-    fill(95,85,85,191);
-    rect(804/2,445/2,400,125);
-    fill(0);
-    text("Tower Menu",804/2-190,200);
-    
-    //upgrade button
-    fill(95,85,85,191);
-    rect(804/2-120,253, 80,45);
-    fill(0);
-    text("Upgrade",804/2-120,253);
-    if (menuClick(804/2-120,253, 80,45)) {
-      level++;
-    }
-    
-    //sell button
-    fill(95,85,85,191);
-    rect(804/2,253,80,45);
-    fill(0);
-    text("Sell",804/2,253);
-    if (menuClick(804/2,253,80,45)) {
-      level = 0;
-    }
-    //cancel button
-    fill(95,85,85,191);
-    rect(803/2+120,253,80,45);
-    fill(0);
-    text("Cancel",803/2+120,253);
-    if (menuClick(803/2+120,253,80,45)) {
-      selected = false;
-    }
   }
   
   boolean menuClick(float x, float y, float rectwidth, float rectheight) {
@@ -160,6 +128,53 @@ public class Ranged extends Tower {
     fill(0);
     rectMode(CORNER);
     rect(xloc-48/2,yloc-17/2,49,17);
+    click();
+    textAlign(CENTER);
+    text(level, 500,400);
+  }
+  
+  int selected(ArrayList<Tower> towers,int money) {
+    //menu box
+    rectMode(CENTER);
+    textAlign(LEFT);
+    fill(95,85,85,191);
+    rect(804/2,445/2,400,125);
+    fill(0);
+    text("Tower Menu" + "                Current Level: " + level,804/2-190,200);
+    
+    textAlign(CENTER);
+    //upgrade button
+    fill(95,85,85,191);
+    rect(804/2-120,253, 80,45);
+    fill(0);
+    text("Upgrade",804/2-120,253);
+    if (menuClick(804/2-120,253, 80,45)) {
+      int temp = (int) (priceRanged*Math.pow(2,level));
+      if (money > temp) {
+        level++;
+        return temp;
+      }
+      selected = false;
+    }
+    
+    //sell button
+    fill(95,85,85,191);
+    rect(804/2,253,80,45);
+    fill(0);
+    text("Sell",804/2,253);
+    if (menuClick(804/2,253,80,45)) {
+      level = 0;
+      return 0;
+    }
+    //cancel button
+    fill(95,85,85,191);
+    rect(803/2+120,253,80,45);
+    fill(0);
+    text("Cancel",803/2+120,253);
+    if (menuClick(803/2+120,253,80,45)) {
+      selected = false;
+    }
+    return 0;
   }
 }
 
@@ -173,5 +188,6 @@ public class Magic extends Tower {
     fill(0);
     rectMode(CORNER);
     rect(xloc-48/2,yloc-17/2,49*2,17*2);
+    click();
   }
 }
