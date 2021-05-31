@@ -41,17 +41,34 @@ public class Tower {
     rectMode(CENTER);
     fill(95,85,85,191);
     rect(804/2,445/2,400,125);
+    fill(0);
+    text("Tower Menu",804/2-190,200);
+    
     //upgrade button
+    fill(95,85,85,191);
     rect(804/2-120,253, 80,45);
+    fill(0);
+    text("Upgrade",804/2-120-40,253);
     if (menuClick(804/2-120,253, 80,45)) {
-      text("hi",804/2,445/2);
+      level++;
     }
     
     //sell button
+    fill(95,85,85,191);
     rect(804/2,253,80,45);
+    fill(0);
+    text("Sell",804/2-15,253);
+    if (menuClick(804/2,253,80,45)) {
+      level = 0;
+    }
     //cancel button
+    fill(95,85,85,191);
     rect(803/2+120,253,80,45);
-    
+    fill(0);
+    text("Cancel",803/2+90,253);
+    if (menuClick(803/2+120,253,80,45)) {
+      selected = false;
+    }
   }
   
   boolean menuClick(float x, float y, float rectwidth, float rectheight) {
