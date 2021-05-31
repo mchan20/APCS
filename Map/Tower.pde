@@ -14,13 +14,13 @@ public class Tower {
     price = 0;
   }
   
-  void display(ArrayList<Shop> shops) {
+  void display() {
     // basically just displays an invisible ellipse at the marked locations
     fill(0);
     ellipse(xloc, yloc, 49,17);
     noFill();
     click();
-    if (selected == true) shops.add(new Shop(level,price));
+    if (selected == true) selected();
   }
   
   void click(){
@@ -31,14 +31,30 @@ public class Tower {
        else deselect();
      }
    }
+   
   
   void deselect() {
     selected = false;
   }
   
   void selected() {
+    //menu box
+    rectMode(CENTER);
+    fill(95,85,85,191);
+    rect(804/2,445/2,400,125);
+    //upgrade button
+    rect(265,253, 75,40);
+    //if
+    
+    //sell button
+    rect(/* sell button *);
+    //cancel button
+    //rect(/* cancel button */);
     
   }
+  
+  //boolean menuClick(float x, float y)
+  
   
   boolean inEllipse(float x, float y) {
     int result = 
