@@ -57,18 +57,19 @@ public class Tower {
   }
   
   int selectedFirst(ArrayList<Tower> towers,int money) {
+    textAlign(RIGHT);
     //menu box
     rectMode(CENTER);
     fill(95,85,85,191);
     rect(804/2,445/2,400,125);
     fill(0);
-    text("Tower Selection",804/2-190,200);
-    
+    text("Tower Selection",804/2-40,200);
+    textAlign(CENTER);
     //Ranged button
     fill(95,85,85,191);
     rect(804/2-120,253, 80,45);
     fill(0);
-    text("Ranged",804/2-120-40,253);
+    text("Ranged",804/2-120,253);
     if (menuClick(804/2-120,253, 80,45)) {
       if (money > 200) {
         upgrade(0,towers);
@@ -80,7 +81,7 @@ public class Tower {
     fill(95,85,85,191);
     rect(804/2,253,80,45);
     fill(0);
-    text("Magic",804/2-15,253);
+    text("Magic",804/2,253);
     if (menuClick(804/2,253,80,45)) {
       if (money > 400) {
         upgrade(1,towers);
@@ -92,7 +93,7 @@ public class Tower {
     fill(95,85,85,191);
     rect(803/2+120,253,80,45);
     fill(0);
-    text("Cancel",803/2+90,253);
+    text("Cancel",803/2+120,253);
     if (menuClick(803/2+120,253,80,45)) {
       selected = false;
     }
@@ -111,7 +112,7 @@ public class Tower {
     fill(95,85,85,191);
     rect(804/2-120,253, 80,45);
     fill(0);
-    text("Upgrade",804/2-120-40,253);
+    text("Upgrade",804/2-120,253);
     if (menuClick(804/2-120,253, 80,45)) {
       level++;
     }
@@ -120,7 +121,7 @@ public class Tower {
     fill(95,85,85,191);
     rect(804/2,253,80,45);
     fill(0);
-    text("Sell",804/2-15,253);
+    text("Sell",804/2,253);
     if (menuClick(804/2,253,80,45)) {
       level = 0;
     }
@@ -128,7 +129,7 @@ public class Tower {
     fill(95,85,85,191);
     rect(803/2+120,253,80,45);
     fill(0);
-    text("Cancel",803/2+90,253);
+    text("Cancel",803/2+120,253);
     if (menuClick(803/2+120,253,80,45)) {
       selected = false;
     }
