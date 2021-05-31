@@ -16,10 +16,10 @@ void setup() {
   for(int i = 0;i<10;i++) {
     enemies.add(new Enemy(1,2)); //creating 10 enemies (kinda like that cow lab)
   }
-  for(int i = 0;i<1;i++) {
-    towers.add(new Tower(1,1.0,1.0,247,323)); //creating 10 enemies (kinda like that cow lab)
-  }
-  towers.add(new Ranged(247,323));
+  //for(int i = 0;i<1;i++) {
+    towers.add(new Tower(1,1.0,1.0,247,323));
+    //towers.add(new Tower(1,1.0,1.0,447,323));
+  //}
 }
 
 void draw() {
@@ -51,8 +51,9 @@ void draw() {
   for(Enemy a : enemies) {
     a.move(newCoords);
   }
-  for(Tower b : towers) {
-    b.display();
+  for(int b=0;b<towers.size();b++) {
+    towers.get(b).display(towers);
   }
+  println(towers.size());
   //money++;
 }

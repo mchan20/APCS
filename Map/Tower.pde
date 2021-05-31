@@ -14,13 +14,16 @@ public class Tower {
     price = 0;
   }
   
-  void display() {
+  void display(ArrayList<Tower> towers) {
     // basically just displays an invisible ellipse at the marked locations
-    fill(0);
-    ellipse(xloc, yloc, 49,17);
-    noFill();
+    //level 0
+    if (level == 0) {
+      fill(0);
+      ellipse(xloc, yloc, 49,17);
+      noFill();
+      if (selected == true) selectedFirst(towers);
+    }
     click();
-    if (selected == true) selected();
   }
   
   void click(){
@@ -34,6 +37,51 @@ public class Tower {
   
   void deselect() {
     selected = false;
+  }
+  
+  void upgrade(int type, ArrayList<Tower> towers) {
+    if (type == 0) {
+      int curr = towers.indexOf(this);
+      towers.add(new Ranged(xloc,yloc));
+      towers.remove(curr);
+    }
+  }
+  
+  void selectedFirst(ArrayList<Tower> towers) {
+    //menu box
+    rectMode(CENTER);
+    fill(95,85,85,191);
+    rect(804/2,445/2,400,125);
+    fill(0);
+    text("Tower Selection",804/2-190,200);
+    
+    //Ranged button
+    fill(95,85,85,191);
+    rect(804/2-120,253, 80,45);
+    fill(0);
+    text("Ranged",804/2-120-40,253);
+    if (menuClick(804/2-120,253, 80,45)) {
+      text("thing",300,300);
+      upgrade(0,towers);
+      level++;
+    }
+    
+    //Magic button
+    fill(95,85,85,191);
+    rect(804/2,253,80,45);
+    fill(0);
+    text("Magic",804/2-15,253);
+    if (menuClick(804/2,253,80,45)) {
+      level = 0;
+    }
+    //cancel button
+    fill(95,85,85,191);
+    rect(803/2+120,253,80,45);
+    fill(0);
+    text("Cancel",803/2+90,253);
+    if (menuClick(803/2+120,253,80,45)) {
+      selected = false;
+    }
   }
   
   void selected() {
@@ -91,7 +139,7 @@ public class Ranged extends Tower {
     super(10, 1.0,1.0,xloc,yloc);
   }
   
-  void display() {
+  void display(ArrayList<Tower> towers) {
     fill(0);
     rectMode(CORNER);
     rect(xloc-48/2,yloc-17/2,49,17);
