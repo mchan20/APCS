@@ -28,7 +28,6 @@ public class Tower {
        if (inEllipse(mouseX,mouseY)) {
            selected = true;
        }
-       else deselect();
      }
    }
    
@@ -43,18 +42,24 @@ public class Tower {
     fill(95,85,85,191);
     rect(804/2,445/2,400,125);
     //upgrade button
-    rect(265,253, 75,40);
-    //if
+    rect(804/2-120,253, 80,45);
+    if (menuClick(804/2-120,253, 80,45)) {
+      text("hi",804/2,445/2);
+    }
     
     //sell button
-    rect(/* sell button *);
+    rect(804/2,253,80,45);
     //cancel button
-    //rect(/* cancel button */);
+    rect(803/2+120,253,80,45);
     
   }
   
-  //boolean menuClick(float x, float y)
-  
+  boolean menuClick(float x, float y, float rectwidth, float rectheight) {
+    if ((mousePressed) && (mouseButton == LEFT)) {
+       return ((mouseX > x-(rectwidth/2)) && (mouseX < x+(rectwidth/2)) && (mouseY > y-(rectheight/2)) && (mouseY < y+(rectheight/2)));
+    }
+    return false;
+  } 
   
   boolean inEllipse(float x, float y) {
     int result = 

@@ -54,5 +54,5 @@ void draw() {
   for(Tower b : towers) {
     b.display();
   }
-  money++;
+  //money++;
 }
