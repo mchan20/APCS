@@ -1,13 +1,14 @@
 public class Tower {
-  int atk,level,price;
-  float atkRng,atkSpd;
+  int atk,level,price,atkSpd,atkcooldown;
+  float atkRng;
   float xloc, yloc;
   boolean selected;
+  
   
   final int priceRanged = 200;
   final int priceMagic = 500;
   
-  Tower(int atk, float atkRng, float atkSpd, float xloc, float yloc) {
+  Tower(int atk, float atkRng, int atkSpd, float xloc, float yloc) {
     this.atk = atk;
     this.atkRng = atkRng;
     this.atkSpd = atkSpd;
@@ -15,6 +16,7 @@ public class Tower {
     this.yloc = yloc;
     level = 0;
     price = 0;
+    atkcooldown = atkSpd;
   }
   
   void display() {
@@ -171,11 +173,23 @@ public class Tower {
   + ((int)Math.pow((y - yloc), 2) / (int)Math.pow(17/2, 2));
     return result <= 1;
   }
+  
+  //code to attack enemies
+  void attack(ArrayList<Enemy> enemies) {
+    for(int b=0;b<enemies.size();b++) {
+      if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),xloc,yloc) <= atkRng) {
+        if (atkcooldown == 0) {
+          enemies.get(b).damage(atk);
+          atkcooldown = atkSpd;
+        }
+      }
+    }
+  }
 }
 
 public class Ranged extends Tower {
   Ranged(float xloc, float yloc) {
-    super(10, 1.0,1.0,xloc,yloc);
+    super(10, 200,100,xloc,yloc);
     level = 1;
     price = priceRanged;
   }
@@ -184,13 +198,17 @@ public class Ranged extends Tower {
     fill(0);
     rectMode(CORNER);
     rect(xloc-48/2,yloc-17/2,49,17);
+    noFill();
+    ellipse(xloc,yloc,200,200);
+    text(atkcooldown,xloc+50,yloc);
+    if (atkcooldown > 0) atkcooldown--;
     click();
   }
 }
 
 public class Magic extends Tower {
   Magic(float xloc, float yloc) {
-    super(10, 1.0,1.0,xloc,yloc);
+    super(10, 200,100,xloc,yloc);
     level = 1;
     price = priceMagic;
   }
@@ -199,6 +217,8 @@ public class Magic extends Tower {
     fill(100);
     rectMode(CORNER);
     rect(xloc-48/2,yloc-17/2,49,17);
+    noFill();
+    ellipse(xloc,yloc,100,100);
     click();
   }
 }

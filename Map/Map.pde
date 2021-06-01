@@ -2,6 +2,7 @@ PImage background;
 int money;
 int numberKilled;
 int waveNumber;
+int timer;
 ArrayList<Enemy> enemies;
 ArrayList<Tower> towers;
 
@@ -17,9 +18,10 @@ void setup() {
     enemies.add(new Enemy(1,2)); //creating 10 enemies (kinda like that cow lab)
   }
   //for(int i = 0;i<1;i++) {
-    towers.add(new Tower(1,1.0,1.0,247,323));
+    towers.add(new Tower(1,1.0,1,247,323));
     //towers.add(new Tower(1,1.0,1.0,447,323));
   //}
+  timer = frameCount;
 }
 
 void draw() {
@@ -29,7 +31,8 @@ void draw() {
   textAlign(LEFT);
   text("money: "        + money + "\n" 
      + "numberKilled: " + numberKilled + "\n"
-     + "waveNumber: "   + waveNumber,4,20);
+     + "waveNumber: "   + waveNumber + "\n"
+     + "time: "   + timer,4,20);
   //for pathing purposes
   fill(0);
   text("X: " + mouseX + "\n" 
@@ -55,7 +58,8 @@ void draw() {
   for(int b=0;b<towers.size();b++) {
     towers.get(b).display();
     money = money - towers.get(b).selection(towers, money);
+    towers.get(b).attack(enemies);
   }
-  println(towers.size());
   money++;
+  timer = frameCount / 60;
 }

@@ -1,5 +1,6 @@
 public class Enemy {
   int path,hp,atk,moneyDrop,step,spd;
+  float xloc,yloc;
   Enemy(int path, int spd) { //these are temporary values
     this.path = path;
     hp = 10;
@@ -7,21 +8,45 @@ public class Enemy {
     moneyDrop = 5;
     step = 0;
     this.spd = spd;
+    xloc = 0.0;
+    yloc = 0.0;
   }
   
   void display(float x,float y) {
     fill(153);
     ellipse(x, y, 10, 10);
+    text(hp,xloc+20,yloc+20);
   }
   
+  void damage(int num) {
+    hp = hp - num;
+  }
+  
+  // get methods for variables
   int getStep() {
     return step;
   }
+  
+  float getxloc() {
+    return xloc;
+  }
+  
+  float getyloc() {
+    return yloc;
+  }
+  
+  //movement code
   void move(ArrayList<Float> newCoords) {
     step = step + spd;
     if (((step*2)+1) < newCoords.size()-spd) {
-      display(newCoords.get(getStep()*2),newCoords.get((getStep()*2)+1));
+      xloc = newCoords.get(getStep()*2);
+      yloc = newCoords.get((getStep()*2)+1);
+      display(xloc,yloc);
     }
-      
+  }
+  
+  //dying code
+  void death() {
+    
   }
 }
