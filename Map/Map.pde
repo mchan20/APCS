@@ -18,12 +18,31 @@ void setup() {
   for(int i = 0;i<1;i++) {
     enemies.add(new Enemy(1,2)); //creating 10 enemies (kinda like that cow lab)
   }
-  //for(int i = 0;i<1;i++) {
-    towers.add(new Tower(1,1.0,1,247,323));
-    //towers.add(new Tower(1,1.0,1.0,447,323));
-  //}
+  
+  //add all towers
+  towers.add(new Tower(1,1.0,1,247,323));
+  towers.add(new Tower(1,1.0,1,321,321));
+  towers.add(new Tower(1,1.0,1,390,321));
+  towers.add(new Tower(1,1.0,1,454,291));
+  
+  towers.add(new Tower(1,1.0,1,354,217));
+  towers.add(new Tower(1,1.0,1,283,217));
+  towers.add(new Tower(1,1.0,1,210,217));
+  
+  towers.add(new Tower(1,1.0,1,390,110));
+  towers.add(new Tower(1,1.0,1,318,110));
+  towers.add(new Tower(1,1.0,1,251,110));
+  
+  towers.add(new Tower(1,1.0,1,427,65));
+  
+  towers.add(new Tower(1,1.0,1,488,214));
+  towers.add(new Tower(1,1.0,1,551,214));
+  towers.add(new Tower(1,1.0,1,517,260));
+  
+  towers.add(new Tower(1,1.0,1,561,356));
+  
   timer = frameCount;
-  pause = false;
+  pause = true;
 }
 
 void draw() {
@@ -34,8 +53,7 @@ void draw() {
   text("money: "        + money + "\n" 
      + "numberKilled: " + numberKilled + "\n"
      + "waveNumber: "   + waveNumber + "\n"
-     + "time: "   + timer + "\n"
-     + "pause: "   + pause,4,20);
+     + "time: "   + timer,4,20);
   //for pathing purposes
   fill(0);
   text("X: " + mouseX + "\n" 
@@ -54,10 +72,8 @@ void draw() {
    372,8});
   //path1.showPath();
   ArrayList <Float> newCoords = path1.splitPath();
-  
-  //for(Enemy a : enemies) {
-  //  a.move(newCoords);
-  //}
+ 
+ 
   if (pause == true) {
     for(int a=0;a<enemies.size();a++) {
       enemies.get(a).move(newCoords);
