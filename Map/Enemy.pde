@@ -3,7 +3,7 @@ public class Enemy {
   float xloc,yloc;
   Enemy(int path, int spd) { //these are temporary values
     this.path = path;
-    hp = 10;
+    hp = 50;
     atk = 5;
     moneyDrop = 5;
     step = 0;
@@ -15,6 +15,7 @@ public class Enemy {
   void display(float x,float y) {
     fill(153);
     ellipse(x, y, 10, 10);
+    fill(0);
     text(hp,xloc+20,yloc+20);
   }
   
@@ -46,7 +47,7 @@ public class Enemy {
   }
   
   //dying code
-  void death() {
-    
+  void death(ArrayList<Enemy> enemies) {
+    if (hp <= 0) enemies.remove(this);
   }
 }
