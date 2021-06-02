@@ -189,7 +189,9 @@ public class Tower {
 
 public class Ranged extends Tower {
   Ranged(float xloc, float yloc) {
-    super(5, 200,100,xloc,yloc);
+    //atk, atkRng, atkSpd
+    //atkRng is the radius! atkRng * 2 is what i should be using for ellipse generation (it is the major axis)
+    super(5, 100,100,xloc,yloc);
     level = 1;
     price = priceRanged;
   }
@@ -199,7 +201,7 @@ public class Ranged extends Tower {
     rectMode(CORNER);
     rect(xloc-48/2,yloc-17/2,49,17);
     noFill();
-    ellipse(xloc,yloc,atkRng,atkRng);
+    ellipse(xloc,yloc,atkRng*2,atkRng*2);
     text(atkcooldown,xloc+50,yloc);
     if (atkcooldown > 0) atkcooldown--;
     click();
@@ -208,7 +210,8 @@ public class Ranged extends Tower {
 
 public class Magic extends Tower {
   Magic(float xloc, float yloc) {
-    super(5, 200,100,xloc,yloc);
+    super(5, 100,100,xloc,yloc);
+    //atk, atkRng, atkSpd
     level = 1;
     price = priceMagic;
   }

@@ -16,7 +16,7 @@ public class Enemy {
     fill(153);
     ellipse(x, y, 10, 10);
     fill(0);
-    text(hp,xloc+20,yloc+20);
+    text(hp + "\n" + xloc + "\n" + yloc + "\n"+ dist(xloc,yloc,247,323),xloc+20,yloc-20);
   }
   
   void damage(int num) {
