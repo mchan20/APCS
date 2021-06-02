@@ -75,3 +75,19 @@ void draw() {
   pause();
   unpause();
 }
+
+void pause() {
+  if (keyPressed) {
+      if (key == 'a') {
+        pause = false;
+      }
+  }
+}
+
+void unpause() {
+  if (keyPressed) {
+      if (key == 's') {
+        pause = true;
+      }
+  }
+}
