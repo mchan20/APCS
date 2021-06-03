@@ -15,9 +15,12 @@ void setup() {
   waveNumber = 0;
   enemies = new ArrayList<Enemy>();
   towers = new ArrayList<Tower>();
+  
+  // add all enemies
   for(int i = 0;i<1;i++) {
     enemies.add(new Enemy(1,2)); //creating 10 enemies (kinda like that cow lab)
   }
+  enemies.add(new Enemy(2,2));
   
   //add all towers
   towers.add(new Tower(1,1.0,1,247,323));
@@ -70,13 +73,28 @@ void draw() {
    201,57,
    352,57,
    372,8});
-  //path1.showPath();
+   Path path2 = new Path(2,0.3,new float[] 
+  {797,412,
+   522,412,
+   486,367,
+   504,329,
+   616,254,
+   584,171,
+   419,171,
+   211,165,
+   178,117,
+   201,57,
+   352,57,
+   372,8});
+  //path2.showPath();
   ArrayList <Float> newCoords = path1.splitPath();
+  ArrayList <Float> newCoords2 = path2.splitPath();
  
  
   if (pause == true) {
     for(int a=0;a<enemies.size();a++) {
-      enemies.get(a).move(newCoords);
+      if (enemies.get(a).getPath() == 1) enemies.get(a).move(newCoords);
+      else enemies.get(a).move(newCoords2);
       enemies.get(a).death(enemies);
     }
     

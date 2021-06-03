@@ -36,6 +36,10 @@ public class Enemy {
     return yloc;
   }
   
+  int getPath() {
+    return path;
+  }
+  
   //movement code
   void move(ArrayList<Float> newCoords) {
     step = step + spd;
