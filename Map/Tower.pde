@@ -24,7 +24,7 @@ public class Tower {
     //level 0
     if (level == 0) {
       fill(0);
-      ellipse(xloc, yloc, 49,17);
+      //ellipse(xloc, yloc, 49,17);
       noFill();
     }
     click();
@@ -32,7 +32,7 @@ public class Tower {
   
   int selection(ArrayList<Tower> towers, int money) {
     if (selected == true) {
-      if (level == 0) return selectedFirst(towers, money);
+      if (level == 0) return selectedV2(towers, money); //selectedFirst(towers, money);
       else return selected(towers, money);
     }
     else return 0;
@@ -161,7 +161,43 @@ public class Tower {
     return 0;
   }
   
+  int selectedV2(ArrayList<Tower> towers,int money) {
+    //circle around tower
+    int menuwidth = 150;
+    int buttondimensions = 50;
+    ellipse(xloc,yloc,menuwidth,menuwidth);
+    
+    //buttons
+    rectMode(CENTER);
+    fill(95,85,85,191);
+    //button at 45 degrees
+    rect(xloc + menuwidth/2 * cos(PI/4),yloc - menuwidth/2 * sin(PI/4),buttondimensions,buttondimensions);
+    if (menuClick(xloc + menuwidth/2 * cos(PI/4),yloc - menuwidth/2 * sin(PI/4),buttondimensions,buttondimensions)) {
+      if (money > priceRanged) {
+        upgrade(0,towers);
+        return priceRanged;
+      }
+    }
+    
+    
+    //button at 135 degrees
+    rect(xloc + menuwidth/2 * cos(3*PI/4),yloc - menuwidth/2 * sin(3*PI/4),buttondimensions,buttondimensions);
+    if (menuClick(xloc + menuwidth/2 * cos(3*PI/4),yloc - menuwidth/2 * sin(3*PI/4),buttondimensions,buttondimensions)) {
+      if (money > priceRanged) {
+        upgrade(0,towers);
+        return priceRanged;
+      }
+    }
+    
+    //button at 225 degrees
+    rect(xloc + menuwidth/2 * cos(5*PI/4),yloc - menuwidth/2 * sin(5*PI/4),buttondimensions,buttondimensions);
+    //button at 315 degrees
+    rect(xloc + menuwidth/2 * cos(7*PI/4),yloc - menuwidth/2 * sin(7*PI/4),buttondimensions,buttondimensions);
+    return 0;
+  }
+  
   boolean menuClick(float x, float y, float rectwidth, float rectheight) {
+
     if ((mousePressed) && (mouseButton == LEFT)) {
        return ((mouseX > x-(rectwidth/2)) && (mouseX < x+(rectwidth/2)) && (mouseY > y-(rectheight/2)) && (mouseY < y+(rectheight/2)));
     }
