@@ -33,7 +33,7 @@ public class Tower {
   int selection(ArrayList<Tower> towers, int money) {
     if (selected == true) {
       if (level == 0) return selectedV2(towers, money); //selectedFirst(towers, money);
-      else return selected(towers, money);
+      else return selectedV2(towers, money);
     }
     else return 0;
   }
@@ -162,42 +162,81 @@ public class Tower {
   }
   
   int selectedV2(ArrayList<Tower> towers,int money) {
+    //display level
+    textAlign(CENTER);
+    fill(100);
+    rectMode(CENTER);
+    rect(732,27,75,50);
+    fill(0);
+    text("Lv. " +level,732,27);
+    noFill();
+    
+    //range circle
+    stroke(204, 102, 0);
+    ellipse(xloc,yloc,atkRng*2,atkRng*2);
+    
+    stroke(0);
     //circle around tower
     int menuwidth = 150;
     int buttondimensions = 50;
     ellipse(xloc,yloc,menuwidth,menuwidth);
-    
     //buttons
     rectMode(CENTER);
-    fill(95,85,85,191);
+    fill(255,0,0,191);
     //button at 45 degrees
-    rect(xloc + menuwidth/2 * cos(PI/4),yloc - menuwidth/2 * sin(PI/4),buttondimensions,buttondimensions);
+    //buy Ranged tower/sell tower
     if (menuClick(xloc + menuwidth/2 * cos(PI/4),yloc - menuwidth/2 * sin(PI/4),buttondimensions,buttondimensions)) {
-      if (money > priceRanged) {
-        upgrade(0,towers);
-        return priceRanged;
+      if (level == 0) {
+        if (money > priceRanged) {
+          upgrade(0,towers);
+          return priceRanged;
+        }
+      }
+      else {
+        int temp = (int) (price*Math.pow(2,level));
+        if (money > temp) {
+          level++;
+          selected = false;
+          return temp;
+        }
       }
     }
-    
     
     //button at 135 degrees
-    rect(xloc + menuwidth/2 * cos(3*PI/4),yloc - menuwidth/2 * sin(3*PI/4),buttondimensions,buttondimensions);
+    //buy magic tower/sell tower
+    fill(0,255,0,191);
     if (menuClick(xloc + menuwidth/2 * cos(3*PI/4),yloc - menuwidth/2 * sin(3*PI/4),buttondimensions,buttondimensions)) {
-      if (money > priceRanged) {
-        upgrade(0,towers);
-        return priceRanged;
+      if (level == 0) {
+        if (money > priceMagic) {
+          upgrade(1,towers);
+          return priceMagic;
+        }
+      }
+      else {
+        int temp = (int) ((price * (1 - Math.pow(2,level))) / (1-2));
+        downgrade(towers);
+        selected = false;
+        return (int) (temp * -0.8);
       }
     }
-    
+    fill(0,0,255,191);
     //button at 225 degrees
-    rect(xloc + menuwidth/2 * cos(5*PI/4),yloc - menuwidth/2 * sin(5*PI/4),buttondimensions,buttondimensions);
+    //cancel
+    if (menuClick(xloc + menuwidth/2 * cos(5*PI/4),yloc - menuwidth/2 * sin(5*PI/4),buttondimensions,buttondimensions)) {
+      selected = false;
+    }
+    
+    fill(95,85,85,191);
     //button at 315 degrees
-    rect(xloc + menuwidth/2 * cos(7*PI/4),yloc - menuwidth/2 * sin(7*PI/4),buttondimensions,buttondimensions);
+    if (menuClick(xloc + menuwidth/2 * cos(7*PI/4),yloc - menuwidth/2 * sin(7*PI/4),buttondimensions,buttondimensions)) {
+      selected = false;
+    }
     return 0;
   }
   
   boolean menuClick(float x, float y, float rectwidth, float rectheight) {
-
+    rectMode(CENTER);
+    rect(x,y,rectwidth,rectheight);
     if ((mousePressed) && (mouseButton == LEFT)) {
        return ((mouseX > x-(rectwidth/2)) && (mouseX < x+(rectwidth/2)) && (mouseY > y-(rectheight/2)) && (mouseY < y+(rectheight/2)));
     }
