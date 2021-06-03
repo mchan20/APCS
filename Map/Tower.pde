@@ -116,6 +116,7 @@ public class Tower {
   
   int selected(ArrayList<Tower> towers,int money) {
     //menu box
+    ellipse(xloc,yloc,atkRng*2,atkRng*2);
     rectMode(CENTER);
     textAlign(LEFT);
     fill(95,85,85,191);
@@ -201,7 +202,6 @@ public class Ranged extends Tower {
     rectMode(CORNER);
     rect(xloc-48/2,yloc-17/2,49,17);
     noFill();
-    ellipse(xloc,yloc,atkRng*2,atkRng*2);
     text(atkcooldown,xloc+50,yloc);
     if (atkcooldown > 0) atkcooldown--;
     click();
@@ -221,7 +221,9 @@ public class Magic extends Tower {
     rectMode(CORNER);
     rect(xloc-48/2,yloc-17/2,49,17);
     noFill();
-    ellipse(xloc,yloc,100,100);
+    ellipse(xloc,yloc,atkRng*2,atkRng*2);
+    text(atkcooldown,xloc+50,yloc);
+    if (atkcooldown > 0) atkcooldown--;
     click();
   }
 }
