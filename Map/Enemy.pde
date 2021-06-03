@@ -1,8 +1,8 @@
 public class Enemy {
-  int path,hp,atk,moneyDrop,step,spd,timer;
+  int path,hp,atk,moneyDrop,step,spd,timer,spawnTimer;
   float xloc,yloc;
   boolean damaged,dead;
-  Enemy(int path, int spd) { //these are temporary values
+  Enemy(int path, int spd,int spawnTimer) { //these are temporary values
     this.path = path;
     hp = 50;
     atk = 5;
@@ -11,6 +11,7 @@ public class Enemy {
     this.spd = spd;
     xloc = 0.0;
     yloc = 0.0;
+    this.spawnTimer = spawnTimer;
   }
   
   void display(float x,float y) {

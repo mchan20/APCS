@@ -18,9 +18,9 @@ void setup() {
   
   // add all enemies
   for(int i = 0;i<1;i++) {
-    enemies.add(new Enemy(1,2)); //creating 10 enemies (kinda like that cow lab)
+    enemies.add(new Enemy(1,2,1)); //creating 10 enemies (kinda like that cow lab)
   }
-  enemies.add(new Enemy(2,2));
+  enemies.add(new Enemy(2,2,1));
   
   //add all towers
   towers.add(new Tower(1,1.0,1,247,323));
@@ -90,8 +90,7 @@ void draw() {
   //path2.showPath();
   ArrayList <Float> newCoords = path1.splitPath();
   ArrayList <Float> newCoords2 = path2.splitPath();
- 
- 
+
   if (pause == true) {
     for(int a=0;a<enemies.size();a++) {
       if (enemies.get(a).getPath() == 1) enemies.get(a).move(newCoords);
@@ -100,7 +99,7 @@ void draw() {
     }
     
     for(int b=0;b<towers.size();b++) {
-      towers.get(b).display();
+      towers.get(b).display(towers);
       money = money - towers.get(b).selection(towers, money);
       towers.get(b).attack(enemies);
     }

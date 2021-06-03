@@ -19,7 +19,13 @@ public class Tower {
     atkcooldown = atkSpd;
   }
   
-  void display() {
+  //get methods
+  boolean getSelected() {
+    return selected;
+  }
+  
+  //display tower
+  void display(ArrayList<Tower> towers) {
     // basically just displays an invisible ellipse at the marked locations
     //level 0
     if (level == 0) {
@@ -27,13 +33,20 @@ public class Tower {
       //ellipse(xloc, yloc, 49,17);
       noFill();
     }
-    click();
+    if (!selected(towers)) click();
+  }
+  
+  boolean selected(ArrayList<Tower> towers) {
+    for(Tower a : towers) {
+      if (a.getSelected() == true) return true;
+    }
+    return false;
   }
   
   int selection(ArrayList<Tower> towers, int money) {
     if (selected == true) {
       if (level == 0) return selectedFirst(towers, money);
-      else return selected(towers, money);
+      else return selectedFirst(towers, money);
     }
     else return 0;
   }
@@ -43,6 +56,7 @@ public class Tower {
        if (inEllipse(mouseX,mouseY)) {
            selected = true;
        }
+       else if (!menuClick(804/2,445/2,400,125)) selected = false;
      }
    }
    
@@ -255,7 +269,7 @@ public class Tower {
     for(int b=0;b<enemies.size();b++) {
       if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),xloc,yloc) < atkRng) {
         if (atkcooldown == 0) {
-          enemies.get(b).damage(atk);
+          enemies.get(b).damage(atk*level);
           atkcooldown = atkSpd;
           timer = 10;
         }
