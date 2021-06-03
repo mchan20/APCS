@@ -1,5 +1,5 @@
 public class Tower {
-  int atk,level,price,atkSpd,atkcooldown;
+  int atk,level,price,atkSpd,atkcooldown,timer;
   float atkRng;
   float xloc, yloc;
   boolean selected;
@@ -32,8 +32,8 @@ public class Tower {
   
   int selection(ArrayList<Tower> towers, int money) {
     if (selected == true) {
-      if (level == 0) return selectedV2(towers, money); //selectedFirst(towers, money);
-      else return selectedV2(towers, money);
+      if (level == 0) return selectedFirst(towers, money);
+      else return selected(towers, money);
     }
     else return 0;
   }
@@ -235,8 +235,8 @@ public class Tower {
   }
   
   boolean menuClick(float x, float y, float rectwidth, float rectheight) {
-    rectMode(CENTER);
-    rect(x,y,rectwidth,rectheight);
+    //rectMode(CENTER);
+    //rect(x,y,rectwidth,rectheight);
     if ((mousePressed) && (mouseButton == LEFT)) {
        return ((mouseX > x-(rectwidth/2)) && (mouseX < x+(rectwidth/2)) && (mouseY > y-(rectheight/2)) && (mouseY < y+(rectheight/2)));
     }
@@ -257,6 +257,7 @@ public class Tower {
         if (atkcooldown == 0) {
           enemies.get(b).damage(atk);
           atkcooldown = atkSpd;
+          timer = 10;
         }
       }
     }
@@ -273,13 +274,15 @@ public class Ranged extends Tower {
   }
   
   void display() {
-    fill(0);
+    if (timer > 0) fill(255,0,0);
+    else fill(0);
     rectMode(CORNER);
     rect(xloc-48/2,yloc-17/2,49,17);
     noFill();
     text(atkcooldown,xloc+50,yloc);
     if (atkcooldown > 0) atkcooldown--;
     click();
+    if (timer > 0) timer--;
   }
 }
 

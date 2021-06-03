@@ -1,6 +1,7 @@
 public class Enemy {
-  int path,hp,atk,moneyDrop,step,spd;
+  int path,hp,atk,moneyDrop,step,spd,timer;
   float xloc,yloc;
+  boolean damaged,dead;
   Enemy(int path, int spd) { //these are temporary values
     this.path = path;
     hp = 50;
@@ -13,14 +14,30 @@ public class Enemy {
   }
   
   void display(float x,float y) {
-    fill(153);
-    ellipse(x, y, 10, 10);
-    fill(0);
-    text(hp + "\n" + xloc + "\n" + yloc + "\n"+ dist(xloc,yloc,247,323),xloc+20,yloc-20);
+      if (damaged) {
+        timer = 10;
+      }
+      if (timer>0) {
+        //fill(255,0,0);
+        ellipse(x, y, 10, 10);
+        stroke(255,0,0);
+        noFill();
+        ellipse(x, y, 50, 50);
+        line(x-55,y,x+55,y);
+        line(x,y-55,x,y+55);
+        stroke(0);
+      }
+      else {
+        fill(0);
+        ellipse(x, y, 10, 10);
+      }
+      damaged = false;
+      text(hp /* + "\n" + xloc + "\n" + yloc + "\n"+ dist(xloc,yloc,247,323) */,xloc+20,yloc-20);
   }
   
   void damage(int num) {
     hp = hp - num;
+    damaged = true;
   }
   
   // get methods for variables
@@ -48,10 +65,13 @@ public class Enemy {
       yloc = newCoords.get((getStep()*2)+1);
       display(xloc,yloc);
     }
+    if (timer > 0) timer--;
   }
   
   //dying code
   void death(ArrayList<Enemy> enemies) {
-    if (hp <= 0) enemies.remove(this);
+    if (hp <= 0) {
+      enemies.remove(this);
+    }
   }
 }

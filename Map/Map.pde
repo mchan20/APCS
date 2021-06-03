@@ -49,6 +49,7 @@ void setup() {
 }
 
 void draw() {
+  imageMode(CORNER);
   image(background,0,0);
   textSize(20);
   fill(0);
