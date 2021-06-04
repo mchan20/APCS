@@ -15,20 +15,23 @@ public class Enemy {
     dead = false;
   }
   
-  void display(float x,float y) {    
+  void display(float x,float y) {
+    PImage thing;
+    if (path == 1) thing = loadImage("wulf.png");
+    else thing = loadImage("wulf2.png");
+    thing.resize(thing.width/4,thing.height/4);
+    imageMode(CENTER);
+    image(thing,xloc,yloc-10);
     if (damaged) {
       timer = 10;
     }
     if (timer>0) {
       if (splashTarget) {
-        ellipse(x, y, 10, 10);
         stroke(0,0,255);
         noFill();
         ellipse(x, y, 140, 140);
       }
       else {
-        //fill(255,0,0);
-        ellipse(x, y, 10, 10);
         stroke(255,0,0);
         noFill();
         ellipse(x, y, 50, 50);
@@ -36,10 +39,6 @@ public class Enemy {
         line(x,y-55,x,y+55);
         stroke(0);
       }
-    }
-    else {
-      fill(0);
-      ellipse(x, y, 10, 10);
     }
     if (timer == 0) splashTarget = false;
     damaged = false;

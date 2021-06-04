@@ -21,13 +21,21 @@ void setup() {
   unkilled = new ArrayList<Enemy>();
   
   // add all enemies
-  for(int i = 0;i<5;i++) {
-     enemies.add(new Enemy(1,2,i*40)); //creating 10 enemies (kinda like that cow lab)
+  for(int i = 0;i<3;i++) {
+     enemies.add(new Enemy(1,2,i*40));
   }
   enemies.add(new Enemy(2,2,4));
   
-  for(int i = 0;i<10;i++) {
-     enemies.add(new Enemy(2,2,300+i*40)); //creating 10 enemies (kinda like that cow lab)
+  for(int i = 0;i<3;i++) {
+     enemies.add(new Enemy(2,2,300+i*40));
+  }
+  
+  for(int i = 0;i<3;i++) {
+     enemies.add(new Enemy(1,2,600+i*40));
+  }
+  
+  for(int i = 0;i<4;i++) {
+     enemies.add(new Enemy(2,2,600+i*40)); 
   }
   
   //add all towers
@@ -70,7 +78,7 @@ void draw() {
   fill(0);
   text("X: " + mouseX + "\n" 
      + "Y: " + mouseY,4,410);
-  Path path1 = new Path(1,0.5,new float[] 
+  Path path1 = new Path(1,0.75,new float[] 
   {4,378,
    134,378,
    209,279,
@@ -82,7 +90,7 @@ void draw() {
    201,57,
    352,57,
    372,8});
-   Path path2 = new Path(2,0.5,new float[] 
+   Path path2 = new Path(2,0.75,new float[] 
   {797,412,
    522,412,
    486,367,
@@ -156,10 +164,11 @@ void winlose() {
   }
   else if (numberKilled == enemyCount) {
     fill(100);
-    rect(804/2,445/2,400,125);
     rectMode(CENTER);
+    rect(804/2,445/2,400,125);
     textAlign(CENTER);
     textSize(40);
+    fill(0);
     text("YOU WIN",804/2,445/2);
   }
 }

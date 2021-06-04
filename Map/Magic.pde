@@ -1,7 +1,7 @@
 public class Magic extends Tower {
   int splashRange;
   Magic(float xloc, float yloc) {
-    super(10, 100,150,xloc,yloc);
+    super(10, 100,50,xloc,yloc);
     //atk, atkRng, atkSpd
     level = 1;
     price = priceMagic;
