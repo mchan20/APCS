@@ -12,6 +12,7 @@ public class Enemy {
     xloc = 0.0;
     yloc = 0.0;
     this.spawnTimer = spawnTimer;
+    dead = false;
   }
   
   void display(float x,float y) {    
@@ -42,7 +43,7 @@ public class Enemy {
     }
     if (timer == 0) splashTarget = false;
     damaged = false;
-    text(hp /* + "\n" + xloc + "\n" + yloc + "\n"+ dist(xloc,yloc,247,323) */,xloc+20,yloc-20);
+    text(hp,xloc+20,yloc-20);
   }
   
   void setSplash() {
@@ -71,6 +72,10 @@ public class Enemy {
     return path;
   }
   
+  boolean getDead() {
+    return dead;
+  }
+  
   //movement code
   void move(ArrayList<Float> newCoords) {
     if (frameCount >= spawnTimer) {
@@ -88,6 +93,7 @@ public class Enemy {
   void death(ArrayList<Enemy> enemies) {
     if (hp <= 0) {
       enemies.remove(this);
+      dead = true;
     }
   }
 }

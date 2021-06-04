@@ -2,7 +2,7 @@ public class Ranged extends Tower {
   Ranged(float xloc, float yloc) {
     //atk, atkRng, atkSpd
     //atkRng is the radius! atkRng * 2 is what i should be using for ellipse generation (it is the major axis)
-    super(5, 100,100,xloc,yloc);
+    super(5, 100,50,xloc,yloc);
     level = 1;
     price = priceRanged;
   }

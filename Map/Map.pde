@@ -3,8 +3,10 @@ int money;
 int numberKilled;
 int waveNumber;
 int timer;
+int lives;
 ArrayList<Enemy> enemies;
 ArrayList<Tower> towers;
+ArrayList<Enemy> unkilled;
 boolean pause;
 int enemyCount;
 
@@ -16,12 +18,17 @@ void setup() {
   waveNumber = 0;
   enemies = new ArrayList<Enemy>();
   towers = new ArrayList<Tower>();
+  unkilled = new ArrayList<Enemy>();
   
   // add all enemies
-  for(int i = 0;i<10;i++) {
+  for(int i = 0;i<5;i++) {
      enemies.add(new Enemy(1,2,i*40)); //creating 10 enemies (kinda like that cow lab)
   }
   enemies.add(new Enemy(2,2,4));
+  
+  for(int i = 0;i<10;i++) {
+     enemies.add(new Enemy(2,2,300+i*40)); //creating 10 enemies (kinda like that cow lab)
+  }
   
   //add all towers
   towers.add(new Tower(1,1.0,1,247,323));
@@ -57,13 +64,13 @@ void draw() {
   textAlign(LEFT);
   text("money: "        + money + "\n" 
      + "numberKilled: " + numberKilled + "\n"
-     + "waveNumber: "   + waveNumber + "\n"
+     + "lives: "   + lives + "\n"
      + "time: "   + timer,4,20);
   //for pathing purposes
   fill(0);
   text("X: " + mouseX + "\n" 
      + "Y: " + mouseY,4,410);
-  Path path1 = new Path(1,0.3,new float[] 
+  Path path1 = new Path(1,0.5,new float[] 
   {4,378,
    134,378,
    209,279,
@@ -75,7 +82,7 @@ void draw() {
    201,57,
    352,57,
    372,8});
-   Path path2 = new Path(2,0.3,new float[] 
+   Path path2 = new Path(2,0.5,new float[] 
   {797,412,
    522,412,
    486,367,
@@ -96,8 +103,10 @@ void draw() {
     for(int a=0;a<enemies.size();a++) {
       if (enemies.get(a).getPath() == 1) enemies.get(a).move(newCoords);
       else enemies.get(a).move(newCoords2);
+      finish(newCoords,enemies.get(a));
       enemies.get(a).death(enemies);
       numberKilled = enemyCount - enemies.size();
+
     }
     
     for(int b=0;b<towers.size();b++) {
@@ -108,8 +117,8 @@ void draw() {
   }
   money++;
   timer = frameCount / 60;
-  pause();
-  unpause();
+  lives = 5 - unkilled.size();
+  winlose();
 }
 
 void pause() {
@@ -125,5 +134,32 @@ void unpause() {
       if (key == 's') {
         pause = true;
       }
+  }
+}
+
+void finish(ArrayList<Float> coords, Enemy a) {
+  if ((a.getxloc() == coords.get(coords.size()-4) && a.getyloc() == coords.get(coords.size()-3)) && (a.getDead() == false)) {
+    enemies.remove(a);
+    unkilled.add(a);
+  }
+}
+
+void winlose() {
+  if (lives == 0) {
+    fill(100);
+    rectMode(CENTER);
+    rect(804/2,445/2,400,125);
+    textAlign(CENTER);
+    textSize(40);
+    fill(0);
+    text("YOU LOSE",804/2,445/2);
+  }
+  else if (numberKilled == enemyCount) {
+    fill(100);
+    rect(804/2,445/2,400,125);
+    rectMode(CENTER);
+    textAlign(CENTER);
+    textSize(40);
+    text("YOU WIN",804/2,445/2);
   }
 }

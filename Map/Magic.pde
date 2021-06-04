@@ -22,18 +22,20 @@ public class Magic extends Tower {
   
   void attack(ArrayList<Enemy> enemies) {
     for(int b=0;b<enemies.size();b++) {
-      if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),xloc,yloc) < atkRng) {
-        if (atkcooldown == 0) {
-          enemies.get(b).setSplash();
-          for(int a=0;a<enemies.size();a++) {
-            if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),enemies.get(a).getxloc(),enemies.get(a).getyloc()) < splashRange) {
-              enemies.get(a).damage(atk*level);
+      if (!enemies.get(b).getDead()) {
+        if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),xloc,yloc) < atkRng) {
+          if (atkcooldown == 0) {
+            enemies.get(b).setSplash();
+            for(int a=0;a<enemies.size();a++) {
+              if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),enemies.get(a).getxloc(),enemies.get(a).getyloc()) < splashRange) {
+                enemies.get(a).damage(atk*level);
+              }
             }
+            atkcooldown = atkSpd;
+            timer = 10;
           }
-          atkcooldown = atkSpd;
-          timer = 10;
         }
-      }
+      }    
     }
   }
-}
+}  

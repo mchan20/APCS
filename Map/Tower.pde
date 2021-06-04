@@ -338,13 +338,14 @@ public class Tower {
   //code to attack enemies
   void attack(ArrayList<Enemy> enemies) {
     for(int b=0;b<enemies.size();b++) {
-      if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),xloc,yloc) < atkRng) {
-        if (atkcooldown == 0) {
-          enemies.get(b).damage(atk*level);
-          atkcooldown = atkSpd;
-          timer = 10;
+      if (!enemies.get(b).getDead())
+        if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),xloc,yloc) < atkRng) {
+          if (atkcooldown == 0) {
+            enemies.get(b).damage(atk*level);
+            atkcooldown = atkSpd;
+            timer = 10;
+          }
         }
       }
     }
   }
-}
