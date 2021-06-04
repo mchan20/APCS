@@ -46,17 +46,19 @@ public class Tower {
   int selection(ArrayList<Tower> towers, int money) {
     if (selected == true) {
       if (level == 0) return selectedFirst(towers, money);
-      else return selectedFirst(towers, money);
+      else return selected(towers, money);
     }
     else return 0;
   }
   
   void click(){
    if ((mousePressed) && (mouseButton == LEFT)) {
+       noStroke();
        if (inEllipse(mouseX,mouseY)) {
-           selected = true;
+         selected = true;
        }
        else if (!menuClick(804/2,445/2,400,125)) selected = false;
+       stroke(0);
      }
    }
    
@@ -287,7 +289,7 @@ public class Ranged extends Tower {
     price = priceRanged;
   }
   
-  void display() {
+  void display(ArrayList<Tower> towers) {
     if (timer > 0) fill(255,0,0);
     else fill(0);
     rectMode(CORNER);
@@ -295,27 +297,47 @@ public class Ranged extends Tower {
     noFill();
     text(atkcooldown,xloc+50,yloc);
     if (atkcooldown > 0) atkcooldown--;
-    click();
+    click();if (!selected(towers)) click();
     if (timer > 0) timer--;
   }
 }
 
 public class Magic extends Tower {
+  int splashRange;
   Magic(float xloc, float yloc) {
-    super(5, 100,100,xloc,yloc);
+    super(10, 100,150,xloc,yloc);
     //atk, atkRng, atkSpd
     level = 1;
     price = priceMagic;
+    splashRange = 30;
   }
   
-  void display() {
-    fill(100);
+  void display(ArrayList<Tower> towers) {
+    if (timer > 0) fill(255,0,0);
+    else fill(0,0,255);
     rectMode(CORNER);
     rect(xloc-48/2,yloc-17/2,49,17);
     noFill();
-    ellipse(xloc,yloc,atkRng*2,atkRng*2);
     text(atkcooldown,xloc+50,yloc);
     if (atkcooldown > 0) atkcooldown--;
-    click();
+    click();if (!selected(towers)) click();
+    if (timer > 0) timer--;
+  }
+  
+  void attack(ArrayList<Enemy> enemies) {
+    for(int b=0;b<enemies.size();b++) {
+      if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),xloc,yloc) < atkRng) {
+        if (atkcooldown == 0) {
+          enemies.get(b).setSplash();
+          for(int a=0;a<enemies.size();a++) {
+            if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),enemies.get(a).getxloc(),enemies.get(a).getyloc()) < splashRange) {
+              enemies.get(a).damage(atk*level);
+            }
+          }
+          atkcooldown = atkSpd;
+          timer = 10;
+        }
+      }
+    }
   }
 }

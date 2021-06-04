@@ -1,7 +1,7 @@
 public class Enemy {
   int path,hp,atk,moneyDrop,step,spd,timer,spawnTimer;
   float xloc,yloc;
-  boolean damaged,dead;
+  boolean damaged,dead,splashTarget;
   Enemy(int path, int spd,int spawnTimer) { //these are temporary values
     this.path = path;
     hp = 50;
@@ -14,11 +14,18 @@ public class Enemy {
     this.spawnTimer = spawnTimer;
   }
   
-  void display(float x,float y) {
-      if (damaged) {
-        timer = 10;
+  void display(float x,float y) {    
+    if (damaged) {
+      timer = 10;
+    }
+    if (timer>0) {
+      if (splashTarget) {
+        ellipse(x, y, 10, 10);
+        stroke(0,0,255);
+        noFill();
+        ellipse(x, y, 60, 60);
       }
-      if (timer>0) {
+      else {
         //fill(255,0,0);
         ellipse(x, y, 10, 10);
         stroke(255,0,0);
@@ -28,12 +35,18 @@ public class Enemy {
         line(x,y-55,x,y+55);
         stroke(0);
       }
-      else {
-        fill(0);
-        ellipse(x, y, 10, 10);
-      }
-      damaged = false;
-      text(hp /* + "\n" + xloc + "\n" + yloc + "\n"+ dist(xloc,yloc,247,323) */,xloc+20,yloc-20);
+    }
+    else {
+      fill(0);
+      ellipse(x, y, 10, 10);
+    }
+    if (timer == 0) splashTarget = false;
+    damaged = false;
+    text(hp /* + "\n" + xloc + "\n" + yloc + "\n"+ dist(xloc,yloc,247,323) */,xloc+20,yloc-20);
+  }
+  
+  void setSplash() {
+    splashTarget = true;
   }
   
   void damage(int num) {
@@ -60,13 +73,15 @@ public class Enemy {
   
   //movement code
   void move(ArrayList<Float> newCoords) {
-    step = step + spd;
-    if (((step*2)+1) < newCoords.size()-spd) {
-      xloc = newCoords.get(getStep()*2);
-      yloc = newCoords.get((getStep()*2)+1);
-      display(xloc,yloc);
+    if (frameCount >= spawnTimer) {
+      step = step + spd;
+      if (((step*2)+1) < newCoords.size()-spd) {
+        xloc = newCoords.get(getStep()*2);
+        yloc = newCoords.get((getStep()*2)+1);
+        display(xloc,yloc);
+      }
+      if (timer > 0) timer--;
     }
-    if (timer > 0) timer--;
   }
   
   //dying code

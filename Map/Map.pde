@@ -10,17 +10,17 @@ boolean pause;
 void setup() {
   size(804,445); //size of image (will probably make slightly bigger)
   background = loadImage("lvl1layout.png");
-  money = 200; 
+  money = 1000; 
   numberKilled = 0;
   waveNumber = 0;
   enemies = new ArrayList<Enemy>();
   towers = new ArrayList<Tower>();
   
   // add all enemies
-  for(int i = 0;i<1;i++) {
-    enemies.add(new Enemy(1,2,1)); //creating 10 enemies (kinda like that cow lab)
+  for(int i = 0;i<10;i++) {
+     enemies.add(new Enemy(1,2,i*20)); //creating 10 enemies (kinda like that cow lab)
   }
-  enemies.add(new Enemy(2,2,1));
+  enemies.add(new Enemy(2,2,4));
   
   //add all towers
   towers.add(new Tower(1,1.0,1,247,323));
@@ -40,7 +40,6 @@ void setup() {
   
   towers.add(new Tower(1,1.0,1,488,214));
   towers.add(new Tower(1,1.0,1,551,214));
-  towers.add(new Tower(1,1.0,1,517,260));
   
   towers.add(new Tower(1,1.0,1,561,356));
   
