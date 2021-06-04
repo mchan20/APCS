@@ -6,6 +6,7 @@ int timer;
 ArrayList<Enemy> enemies;
 ArrayList<Tower> towers;
 boolean pause;
+int enemyCount;
 
 void setup() {
   size(804,445); //size of image (will probably make slightly bigger)
@@ -45,6 +46,7 @@ void setup() {
   
   timer = frameCount;
   pause = true;
+  enemyCount = enemies.size();
 }
 
 void draw() {
@@ -95,6 +97,7 @@ void draw() {
       if (enemies.get(a).getPath() == 1) enemies.get(a).move(newCoords);
       else enemies.get(a).move(newCoords2);
       enemies.get(a).death(enemies);
+      numberKilled = enemyCount - enemies.size();
     }
     
     for(int b=0;b<towers.size();b++) {

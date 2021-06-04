@@ -45,20 +45,18 @@ public class Tower {
   
   int selection(ArrayList<Tower> towers, int money) {
     if (selected == true) {
-      if (level == 0) return selectedFirst(towers, money);
-      else return selected(towers, money);
+      if (level == 0) return selectedV3(towers, money);
+      else return selectedV3(towers, money);
     }
     else return 0;
   }
   
   void click(){
    if ((mousePressed) && (mouseButton == LEFT)) {
-       noStroke();
        if (inEllipse(mouseX,mouseY)) {
-         selected = true;
+           selected = true;
        }
-       else if (!menuClick(804/2,445/2,400,125)) selected = false;
-       stroke(0);
+       else if (!menuClick(630,65,340,110)) selected = false;
      }
    }
    
@@ -125,6 +123,77 @@ public class Tower {
     fill(0);
     text("Cancel",803/2+120,253);
     if (menuClick(803/2+120,253,80,45)) {
+      selected = false;
+    }
+    return 0;
+  }
+  
+  int selectedV3(ArrayList<Tower> towers,int money) {
+    //menu box
+    ellipse(xloc,yloc,atkRng*2,atkRng*2);
+    rectMode(CENTER);
+    textAlign(LEFT);
+    fill(95,85,85,191);
+    rect(630,65,340,110);
+    fill(0);
+    if (level == 0) {
+      text("Tower Selection",630-165,30);
+    }
+    else {
+      text("Tower Menu" + "                       Lv: " + level,630-165,30);
+    }
+    textSize(15);
+    textAlign(CENTER);
+    
+    //Ranged/upgrade button
+    fill(95,85,85,191);
+    rect(460+65,80,80,40);
+    fill(0);
+    if (level == 0) text("Ranged",460+65,80);
+    else text("Upgrade",460+65,80);
+    if (menuClick(460+65,80,80,40)) {
+      if (level == 0) {
+        if (money > priceRanged) {
+          upgrade(0,towers);
+          return priceRanged;
+        }
+      }
+      else {
+        int temp = (int) (price*Math.pow(2,level));
+        if (money > temp) {
+          level++;
+          selected = false;
+          return temp;
+        }
+      }
+    }
+    
+    //Magic/sell button
+    fill(95,85,85,191);
+    rect(630,80,80,40);
+    fill(0);
+    if (level == 0) text("Magic",630,80);
+    else text("Sell",630,80);
+    if (menuClick(630,80,80,40)) {
+      if (level == 0) {
+        if (money > priceMagic) {
+          upgrade(1,towers);
+          return priceMagic;
+        }
+      }
+      else {
+        int temp = (int) ((price * (1 - Math.pow(2,level))) / (1-2));
+        downgrade(towers);
+        selected = false;
+        return (int) (temp * -0.8);
+      }
+    }
+    //cancel button
+    fill(95,85,85,191);
+    rect(800-65,80,80,40);
+    fill(0);
+    text("Cancel",800-65,80);
+    if (menuClick(800-65,80,80,40)) {
       selected = false;
     }
     return 0;
@@ -272,76 +341,6 @@ public class Tower {
       if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),xloc,yloc) < atkRng) {
         if (atkcooldown == 0) {
           enemies.get(b).damage(atk*level);
-          atkcooldown = atkSpd;
-          timer = 10;
-        }
-      }
-    }
-  }
-}
-
-public class Ranged extends Tower {
-  Ranged(float xloc, float yloc) {
-    //atk, atkRng, atkSpd
-    //atkRng is the radius! atkRng * 2 is what i should be using for ellipse generation (it is the major axis)
-    super(5, 100,100,xloc,yloc);
-    level = 1;
-    price = priceRanged;
-  }
-  
-  void display(ArrayList<Tower> towers) {
-    if (timer > 0) fill(255,0,0);
-    else fill(0);
-    //rectMode(CORNER);
-    //rect(xloc-48/2,yloc-17/2,49,17);
-    PImage thing = loadImage("Ranged.png");
-    thing.resize(thing.width/4,thing.height/4);
-    imageMode(CENTER);
-    image(thing,xloc,yloc-10);
-    noFill();
-    text(atkcooldown,xloc+50,yloc);
-    if (atkcooldown > 0) atkcooldown--;
-    click();if (!selected(towers)) click();
-    if (timer > 0) timer--;
-  }
-}
-
-public class Magic extends Tower {
-  int splashRange;
-  Magic(float xloc, float yloc) {
-    super(10, 100,150,xloc,yloc);
-    //atk, atkRng, atkSpd
-    level = 1;
-    price = priceMagic;
-    splashRange = 70;
-  }
-  
-  void display(ArrayList<Tower> towers) {
-    if (timer > 0) fill(255,0,0);
-    else fill(0,0,255);
-    //rectMode(CORNER);
-    //rect(xloc-48/2,yloc-17/2,49,17);
-    PImage thing = loadImage("Magic.png");
-    thing.resize(thing.width/4,thing.height/4);
-    imageMode(CENTER);
-    image(thing,xloc,yloc-10);
-    noFill();
-    text(atkcooldown,xloc+50,yloc);
-    if (atkcooldown > 0) atkcooldown--;
-    click();if (!selected(towers)) click();
-    if (timer > 0) timer--;
-  }
-  
-  void attack(ArrayList<Enemy> enemies) {
-    for(int b=0;b<enemies.size();b++) {
-      if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),xloc,yloc) < atkRng) {
-        if (atkcooldown == 0) {
-          enemies.get(b).setSplash();
-          for(int a=0;a<enemies.size();a++) {
-            if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),enemies.get(a).getxloc(),enemies.get(a).getyloc()) < splashRange) {
-              enemies.get(a).damage(atk*level);
-            }
-          }
           atkcooldown = atkSpd;
           timer = 10;
         }
