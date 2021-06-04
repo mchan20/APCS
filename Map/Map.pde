@@ -18,7 +18,7 @@ void setup() {
   
   // add all enemies
   for(int i = 0;i<10;i++) {
-     enemies.add(new Enemy(1,2,i*20)); //creating 10 enemies (kinda like that cow lab)
+     enemies.add(new Enemy(1,2,i*40)); //creating 10 enemies (kinda like that cow lab)
   }
   enemies.add(new Enemy(2,2,4));
   

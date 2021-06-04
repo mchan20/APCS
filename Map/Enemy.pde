@@ -23,7 +23,7 @@ public class Enemy {
         ellipse(x, y, 10, 10);
         stroke(0,0,255);
         noFill();
-        ellipse(x, y, 60, 60);
+        ellipse(x, y, 140, 140);
       }
       else {
         //fill(255,0,0);

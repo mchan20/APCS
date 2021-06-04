@@ -292,8 +292,12 @@ public class Ranged extends Tower {
   void display(ArrayList<Tower> towers) {
     if (timer > 0) fill(255,0,0);
     else fill(0);
-    rectMode(CORNER);
-    rect(xloc-48/2,yloc-17/2,49,17);
+    //rectMode(CORNER);
+    //rect(xloc-48/2,yloc-17/2,49,17);
+    PImage thing = loadImage("Ranged.png");
+    thing.resize(thing.width/4,thing.height/4);
+    imageMode(CENTER);
+    image(thing,xloc,yloc-10);
     noFill();
     text(atkcooldown,xloc+50,yloc);
     if (atkcooldown > 0) atkcooldown--;
@@ -309,14 +313,18 @@ public class Magic extends Tower {
     //atk, atkRng, atkSpd
     level = 1;
     price = priceMagic;
-    splashRange = 30;
+    splashRange = 70;
   }
   
   void display(ArrayList<Tower> towers) {
     if (timer > 0) fill(255,0,0);
     else fill(0,0,255);
-    rectMode(CORNER);
-    rect(xloc-48/2,yloc-17/2,49,17);
+    //rectMode(CORNER);
+    //rect(xloc-48/2,yloc-17/2,49,17);
+    PImage thing = loadImage("Magic.png");
+    thing.resize(thing.width/4,thing.height/4);
+    imageMode(CENTER);
+    image(thing,xloc,yloc-10);
     noFill();
     text(atkcooldown,xloc+50,yloc);
     if (atkcooldown > 0) atkcooldown--;
