@@ -1,13 +1,9 @@
 PImage background;
-int money;
-int numberKilled;
-int waveNumber;
-int timer;
-int lives;
+int money,numberKilled,waveNumber,timer,lives;
 ArrayList<Enemy> enemies;
 ArrayList<Tower> towers;
 ArrayList<Enemy> unkilled;
-boolean pause;
+boolean pause,play;
 int enemyCount;
 
 void setup() {
@@ -62,9 +58,28 @@ void setup() {
   timer = frameCount;
   pause = true;
   enemyCount = enemies.size();
+  play = false;
 }
 
 void draw() {
+  if (!play) {
+    imageMode(CORNER);
+    PImage startscreenbg = loadImage("startscreenbg.jpg");
+    PImage KRlogo = loadImage("KRlogo.png");
+    startscreenbg.resize(804,445);
+    KRlogo.resize(KRlogo.width*7/8,KRlogo.height*7/8);
+    image(startscreenbg,0,0);
+    imageMode(CENTER);
+    image(KRlogo,402,130);
+    fill(255);
+    textSize(30);
+    text("but scuffed",402,200);
+  }
+  else {
+    play();
+  }
+}
+void play() {
   imageMode(CORNER);
   image(background,0,0);
   textSize(20);
