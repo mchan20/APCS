@@ -3,7 +3,7 @@ int money,numberKilled,waveNumber,timer,lives;
 ArrayList<Enemy> enemies;
 ArrayList<Tower> towers;
 ArrayList<Enemy> unkilled;
-boolean pause,play;
+boolean pause,play,helpScreen,lose,win;
 int enemyCount;
 
 void setup() {
@@ -62,8 +62,34 @@ void setup() {
 }
 
 void draw() {
+  image(background,0,0);
   if (!play) {
     startup();
+  }
+  else if (helpScreen) {
+    
+  }
+  else if (lose) {
+    imageMode(CORNER);
+    image(background,0,0);
+    fill(100);
+    rectMode(CENTER);
+    rect(804/2,445/2,400,125);
+    textAlign(CENTER);
+    textSize(40);
+    fill(0);
+    text("YOU LOSE",804/2,445/2);
+  }
+  else if (win) {
+    imageMode(CORNER);
+    image(background,0,0);
+    fill(100);
+    rectMode(CENTER);
+    rect(804/2,445/2,400,125);
+    textAlign(CENTER);
+    textSize(40);
+    fill(0);
+    text("YOU WIN",804/2,445/2);
   }
   else {
     play();
@@ -103,12 +129,19 @@ void startup() {
   if (menuClick(402,270,100,50)) {
     play = true;
   }
-  else
+  else if (menuClick(402,340,190,50)) {
+    helpScreen = true;
+  }
 }
 
 void play() {
   imageMode(CORNER);
   image(background,0,0);
+  imageMode(CENTER);
+  PImage objective = loadImage("objective.png");
+  objective.resize(objective.width/24,objective.height/24);
+  image(objective,372,15);
+  imageMode(CORNER);
   textSize(20);
   fill(0);
   textAlign(LEFT);
@@ -120,7 +153,7 @@ void play() {
   fill(0);
   text("X: " + mouseX + "\n" 
      + "Y: " + mouseY,4,410);
-  Path path1 = new Path(1,0.75,new float[] 
+  Path path1 = new Path(1,2,new float[] 
   {4,378,
    134,378,
    209,279,
@@ -132,7 +165,7 @@ void play() {
    201,57,
    352,57,
    372,8});
-   Path path2 = new Path(2,0.75,new float[] 
+   Path path2 = new Path(2,2,new float[] 
   {797,412,
    522,412,
    486,367,
@@ -188,11 +221,12 @@ void unpause() {
 }
 
 void finish(ArrayList<Float> coords, Enemy a) {
-  if ((a.getxloc() == coords.get(coords.size()-4) && a.getyloc() == coords.get(coords.size()-3)) && (a.getDead() == false)) {
+  if ((Math.abs(a.getxloc()- 372) < 2) && (Math.abs(a.getyloc() - 8) < 5) && (a.getDead() == false)) {
     enemies.remove(a);
     unkilled.add(a);
   }
 }
+
 
 boolean menuClick(float x, float y, float rectwidth, float rectheight) {
   //rectMode(CENTER);
@@ -204,22 +238,10 @@ boolean menuClick(float x, float y, float rectwidth, float rectheight) {
 } 
 
 void winlose() {
-  if (lives == 0) {
-    fill(100);
-    rectMode(CENTER);
-    rect(804/2,445/2,400,125);
-    textAlign(CENTER);
-    textSize(40);
-    fill(0);
-    text("YOU LOSE",804/2,445/2);
+  if (lives <= 0) {
+    lose = true;
   }
   else if (numberKilled == enemyCount) {
-    fill(100);
-    rectMode(CENTER);
-    rect(804/2,445/2,400,125);
-    textAlign(CENTER);
-    textSize(40);
-    fill(0);
-    text("YOU WIN",804/2,445/2);
+    win = true;
   }
 }

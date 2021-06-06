@@ -10,12 +10,13 @@ public class Ranged extends Tower {
   void display(ArrayList<Tower> towers) {
     //rectMode(CORNER);
     //rect(xloc-48/2,yloc-17/2,49,17);
+    textSize(15);
     PImage thing = loadImage("Ranged.png");
     thing.resize(thing.width/4,thing.height/4);
     imageMode(CENTER);
     image(thing,xloc,yloc-10);
     noFill();
-    text(atkcooldown,xloc+50,yloc);
+    text(atkcooldown,xloc-10,yloc+30);
     if (atkcooldown > 0) atkcooldown--;
     if (!selected(towers)) click();
     if (timer > 0) timer--;

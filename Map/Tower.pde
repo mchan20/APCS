@@ -130,6 +130,7 @@ public class Tower {
   
   int selectedV3(ArrayList<Tower> towers,int money) {
     //menu box
+    stroke(0);
     ellipse(xloc,yloc,atkRng*2,atkRng*2);
     rectMode(CENTER);
     textAlign(LEFT);
