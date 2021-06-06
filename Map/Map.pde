@@ -62,14 +62,62 @@ void setup() {
 }
 
 void draw() {
-  image(background,0,0);
   if (!play) {
-    startup();
+    if (helpScreen) {
+      imageMode(CORNER);
+      PImage startscreenbg = loadImage("startscreenbg.jpg");
+      startscreenbg.resize(804,445);
+      image(startscreenbg,0,0);
+      textAlign(CENTER);
+      textSize(40);
+      text("How To Play",402,40);
+      
+      //guide body
+      textAlign(CORNER);
+      textSize(15);
+      rectMode(CORNER);
+      text("Kingdom Rush (or at least my version of it) is a simple tower defense game." + 
+      "The main obective is to destroy all enemies before they can reach the defense point, you will lose lives if they pass through." + "\n" +
+      "You get money passively and by killing enemies, you can use this money to then purchase towers." + "\n" +
+      "Towers are divided into three classes. Ranged, Magic, and Artillery." + "\n" +
+      "1. Ranged - fast attack speed, and single target attacks." + "\n" +
+      "2. Magic - slower attack speed, but splash damage and ignore defense" + "\n" +
+      "3. Artillery - slower attack speed, but high damage and splash" + "\n" +
+      "Enemies have varying hp and defense stats." + "\n" +
+      "Thats all there really is to it, and Have Fun!",80,50,600,600);
+      
+      
+      //buttons
+      rectMode(CENTER);
+      fill(100);
+      rect(352,340,60,40);
+      textAlign(CENTER);
+      fill(0);
+      text("Play",352,340);
+      
+      fill(100);
+      rect(452,340,60,40);
+      textAlign(CENTER);
+      fill(0);
+      text("Back",452,340);
+      
+      //back and play button fxn
+      if (menuClick(352,340,60,40)) {
+        play = true;
+      }
+      else if (menuClick(452,340,60,40)) {
+        helpScreen = true;
+      }
+      
+    }
+    else {
+      startup();
+    }
   }
-  else if (helpScreen) {
-    
+  else {
+    play();
   }
-  else if (lose) {
+  if (lose) {
     imageMode(CORNER);
     image(background,0,0);
     fill(100);
@@ -80,7 +128,7 @@ void draw() {
     fill(0);
     text("YOU LOSE",804/2,445/2);
   }
-  else if (win) {
+  if (win) {
     imageMode(CORNER);
     image(background,0,0);
     fill(100);
@@ -90,9 +138,6 @@ void draw() {
     textSize(40);
     fill(0);
     text("YOU WIN",804/2,445/2);
-  }
-  else {
-    play();
   }
 }
 
