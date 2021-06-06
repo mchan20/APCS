@@ -63,22 +63,49 @@ void setup() {
 
 void draw() {
   if (!play) {
-    imageMode(CORNER);
-    PImage startscreenbg = loadImage("startscreenbg.jpg");
-    PImage KRlogo = loadImage("KRlogo.png");
-    startscreenbg.resize(804,445);
-    KRlogo.resize(KRlogo.width*7/8,KRlogo.height*7/8);
-    image(startscreenbg,0,0);
-    imageMode(CENTER);
-    image(KRlogo,402,130);
-    fill(255);
-    textSize(30);
-    text("but scuffed",402,200);
+    startup();
   }
   else {
     play();
   }
 }
+
+void startup() {
+  imageMode(CORNER);
+  //background graphics
+  PImage startscreenbg = loadImage("startscreenbg.jpg");
+  PImage KRlogo = loadImage("KRlogo.png");
+  startscreenbg.resize(804,445);
+  KRlogo.resize(KRlogo.width*7/8,KRlogo.height*7/8);
+  image(startscreenbg,0,0);
+  imageMode(CENTER);
+  image(KRlogo,402,130);
+  fill(255);
+  textSize(30);
+  textAlign(CORNER);
+  text("but scuffed",402,200);
+  
+  //buttons to start game
+  rectMode(CENTER);
+  fill(100);
+  rect(402,270,100,50);
+  textAlign(CENTER);
+  fill(0);
+  text("Play",402,280);
+  
+  fill(100);
+  rect(402,340,190,50);
+  textAlign(CENTER);
+  fill(0);
+  text("How To Play",402,350);
+  
+  //code to make buttons work
+  if (menuClick(402,270,100,50)) {
+    play = true;
+  }
+  else
+}
+
 void play() {
   imageMode(CORNER);
   image(background,0,0);
@@ -166,6 +193,15 @@ void finish(ArrayList<Float> coords, Enemy a) {
     unkilled.add(a);
   }
 }
+
+boolean menuClick(float x, float y, float rectwidth, float rectheight) {
+  //rectMode(CENTER);
+  //rect(x,y,rectwidth,rectheight);
+  if ((mousePressed) && (mouseButton == LEFT)) {
+     return ((mouseX > x-(rectwidth/2)) && (mouseX < x+(rectwidth/2)) && (mouseY > y-(rectheight/2)) && (mouseY < y+(rectheight/2)));
+  }
+  return false;
+} 
 
 void winlose() {
   if (lives == 0) {
