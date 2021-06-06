@@ -1,4 +1,4 @@
-PImage background;
+PImage background,startscreenbg,KRlogo,heart,dollar,enemycount,clock;
 int money,numberKilled,waveNumber,timer,lives;
 ArrayList<Enemy> enemies;
 ArrayList<Tower> towers;
@@ -8,7 +8,25 @@ int enemyCount;
 
 void setup() {
   size(804,445); //size of image (will probably make slightly bigger)
+  
+  //image stuff
   background = loadImage("lvl1layout.png");
+  startscreenbg = loadImage("startscreenbg.jpg");
+  KRlogo = loadImage("KRlogo.png");
+  heart = loadImage("heart.png");
+  dollar = loadImage("money.png");
+  enemycount = loadImage("enemycount.png");
+  clock = loadImage("clock.png");
+  
+  startscreenbg.resize(804,445);
+  KRlogo.resize(KRlogo.width*7/8,KRlogo.height*7/8);
+  heart.resize(heart.width*1/27,heart.height*1/27);
+  dollar.resize(dollar.width*1/23,dollar.height*1/23);
+  enemycount.resize(enemycount.width*7/8,enemycount.height*7/8);
+  //clock
+  clock.resize(clock.width*1/19,clock.height*1/19);
+  
+  //other stuff
   money = 1000; 
   numberKilled = 0;
   waveNumber = 0;
@@ -65,8 +83,6 @@ void draw() {
   if (!play) {
     if (helpScreen) {
       imageMode(CORNER);
-      PImage startscreenbg = loadImage("startscreenbg.jpg");
-      startscreenbg.resize(804,445);
       image(startscreenbg,0,0);
       textAlign(CENTER);
       textSize(40);
@@ -90,22 +106,12 @@ void draw() {
       //buttons
       rectMode(CENTER);
       fill(100);
-      rect(352,340,60,40);
+      rect(520,340,60,40);
       textAlign(CENTER);
       fill(0);
-      text("Play",352,340);
-      
-      fill(100);
-      rect(452,340,60,40);
-      textAlign(CENTER);
-      fill(0);
-      text("Back",452,340);
-      
-      //back and play button fxn
-      if (menuClick(352,340,60,40)) {
-        play = true;
-      }
-      else if (menuClick(452,340,60,40)) {
+      text("Back",520,340);
+    
+      if (menuClick(520,340,60,40)) {
         helpScreen = false;
       }
       
@@ -116,6 +122,7 @@ void draw() {
   }
   else {
     play();
+    statuscounters();
   }
   if (lose) {
     imageMode(CORNER);
@@ -144,10 +151,6 @@ void draw() {
 void startup() {
   imageMode(CORNER);
   //background graphics
-  PImage startscreenbg = loadImage("startscreenbg.jpg");
-  PImage KRlogo = loadImage("KRlogo.png");
-  startscreenbg.resize(804,445);
-  KRlogo.resize(KRlogo.width*7/8,KRlogo.height*7/8);
   image(startscreenbg,0,0);
   imageMode(CENTER);
   image(KRlogo,402,130);
@@ -226,7 +229,7 @@ void play() {
       if (enemies.get(a).getPath() == 1) enemies.get(a).move(newCoords);
       else enemies.get(a).move(newCoords2);
       finish(newCoords,enemies.get(a));
-      enemies.get(a).death(enemies);
+      if (enemies.size() > 0) enemies.get(a).death(enemies);
       numberKilled = enemyCount - enemies.size();
 
     }
@@ -288,11 +291,18 @@ void winlose() {
 }
 
 void statuscounters() {
+  rectMode(CORNER);
+  fill(100);
+  rect(0,0,90,120);
   fill(0);
+  rectMode(CENTER);
   textAlign(LEFT);
+  textSize(20);
   imageMode(CENTER);
-  text("money: "        + money + "\n" 
-     + "numberKilled: " + numberKilled + "\n"
-     + "lives: "   + lives + "\n"
-     + "time: "   + timer,4,20);
+  image(dollar,14,14);
+  image(enemycount,14,44);
+  image(heart,14,74);
+  image(clock,14,104);
+  text(money + "\n"+ numberKilled + "\n"+ lives + "\n" + timer,30,20);
+  imageMode(CORNER);
 }
