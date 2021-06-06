@@ -106,7 +106,7 @@ void draw() {
         play = true;
       }
       else if (menuClick(452,340,60,40)) {
-        helpScreen = true;
+        helpScreen = false;
       }
       
     }
