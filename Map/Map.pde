@@ -188,17 +188,11 @@ void play() {
   image(objective,372,15);
   imageMode(CORNER);
   textSize(20);
-  fill(0);
-  textAlign(LEFT);
-  text("money: "        + money + "\n" 
-     + "numberKilled: " + numberKilled + "\n"
-     + "lives: "   + lives + "\n"
-     + "time: "   + timer,4,20);
   //for pathing purposes
   fill(0);
   text("X: " + mouseX + "\n" 
      + "Y: " + mouseY,4,410);
-  Path path1 = new Path(1,2,new float[] 
+  Path path1 = new Path(1,0.75,new float[] 
   {4,378,
    134,378,
    209,279,
@@ -210,7 +204,7 @@ void play() {
    201,57,
    352,57,
    372,8});
-   Path path2 = new Path(2,2,new float[] 
+   Path path2 = new Path(2,0.75,new float[] 
   {797,412,
    522,412,
    486,367,
@@ -285,8 +279,20 @@ boolean menuClick(float x, float y, float rectwidth, float rectheight) {
 void winlose() {
   if (lives <= 0) {
     lose = true;
+    play = false;
   }
   else if (numberKilled == enemyCount) {
     win = true;
+    play = false;
   }
+}
+
+void statuscounters() {
+  fill(0);
+  textAlign(LEFT);
+  imageMode(CENTER);
+  text("money: "        + money + "\n" 
+     + "numberKilled: " + numberKilled + "\n"
+     + "lives: "   + lives + "\n"
+     + "time: "   + timer,4,20);
 }

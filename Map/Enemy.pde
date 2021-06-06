@@ -2,6 +2,7 @@ public class Enemy {
   int path,hp,atk,moneyDrop,step,spd,timer,spawnTimer;
   float xloc,yloc;
   boolean damaged,dead,splashTarget;
+  PImage thing;
   Enemy(int path, int spd,int spawnTimer) { //these are temporary values
     this.path = path;
     hp = 50;
@@ -13,13 +14,12 @@ public class Enemy {
     yloc = 0.0;
     this.spawnTimer = spawnTimer;
     dead = false;
-  }
-  
-  void display(float x,float y) {
-    PImage thing;
     if (path == 1) thing = loadImage("wulf.png");
     else thing = loadImage("wulf2.png");
     thing.resize(thing.width/4,thing.height/4);
+  }
+  
+  void display(float x,float y) {
     imageMode(CENTER);
     image(thing,xloc,yloc-10);
     if (damaged) {

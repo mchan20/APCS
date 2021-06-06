@@ -1,17 +1,18 @@
 public class Magic extends Tower {
   int splashRange;
+  PImage thing;
   Magic(float xloc, float yloc) {
     super(10, 100,50,xloc,yloc);
     //atk, atkRng, atkSpd
     level = 1;
     price = priceMagic;
     splashRange = 70;
+    thing = loadImage("Magic.png");
+    thing.resize(thing.width/4,thing.height/4);
   }
   
   void display(ArrayList<Tower> towers) {
     textSize(15);
-    PImage thing = loadImage("Magic.png");
-    thing.resize(thing.width/4,thing.height/4);
     imageMode(CENTER);
     image(thing,xloc,yloc-10);
     noFill();
