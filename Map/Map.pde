@@ -35,8 +35,8 @@ void setup() {
   unkilled = new ArrayList<Enemy>();
   
   // add all enemies
-  for(int i = 0;i<3;i++) {
-     enemies.add(new Enemy(1,2,i*40));
+  for(int i = 0;i<9;i++) {
+     enemies.add(new Goblin(1,i*30));
   }
   enemies.add(new Enemy(2,2,4));
   

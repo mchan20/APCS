@@ -2,7 +2,7 @@ public class Artillery extends Tower {
   int splashRange;
   PImage thing;
   Artillery(float xloc, float yloc) {
-    super(10, 100,50,xloc,yloc);
+    super(20, 100,150,xloc,yloc);
     //atk, atkRng, atkSpd
     level = 1;
     price = priceArtillery;
