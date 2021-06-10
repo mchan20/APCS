@@ -6,7 +6,7 @@ public class Tower {
   
   
   final int priceRanged = 200;
-  final int priceMagic = 500;
+  final int priceMagic = 100;
   final int priceArtillery = 500;
   
   Tower(int atk, float atkRng, int atkSpd, float xloc, float yloc) {
@@ -193,7 +193,8 @@ public class Tower {
       if (!enemies.get(b).getDead())
         if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),xloc,yloc) < atkRng) {
           if (atkcooldown == 0) {
-            enemies.get(b).damage(atk*level - enemies.get(b).getDef());
+            if (atk*level >= enemies.get(b).getDef()) enemies.get(b).damage(atk*level - enemies.get(b).getDef());
+            else enemies.get(b).damage(0);
             atkcooldown = atkSpd;
           }
         }

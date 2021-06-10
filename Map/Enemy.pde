@@ -50,6 +50,7 @@ public class Enemy {
     }
     if (timer == 0) {
       splashTarget = false;
+      artTarget = false;
     }
     damaged = false;
     text(hp,xloc+20,yloc-20);
