@@ -27,7 +27,7 @@ public class Artillery extends Tower {
       if (!enemies.get(b).getDead()) {
         if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),xloc,yloc) < atkRng) {
           if (atkcooldown == 0) {
-            enemies.get(b).setSplash();
+            enemies.get(b).setArtillery();
             for(int a=0;a<enemies.size();a++) {
               if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),enemies.get(a).getxloc(),enemies.get(a).getyloc()) < splashRange) {
                 enemies.get(a).damage(atk*level);

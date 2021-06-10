@@ -1,8 +1,8 @@
 public class Enemy {
   int path,hp,atk,moneyDrop,step,spd,timer,spawnTimer;
   float xloc,yloc;
-  boolean damaged,dead,splashTarget;
-  PImage thing;
+  boolean damaged,dead,splashTarget,artTarget;
+  PImage thing,explosion;
   Enemy(int path, int spd,int spawnTimer) { //these are temporary values
     this.path = path;
     hp = 50;
@@ -17,6 +17,8 @@ public class Enemy {
     if (path == 1) thing = loadImage("wulf.png");
     else thing = loadImage("wulf2.png");
     thing.resize(thing.width/4,thing.height/4);
+    explosion = loadImage("explosion.png");
+    explosion.resize(explosion.width/8,explosion.height/8);
   }
   
   void display(float x,float y) {
@@ -31,6 +33,9 @@ public class Enemy {
         noFill();
         ellipse(x, y, 140, 140);
       }
+      if (artTarget) {
+        image(explosion, xloc,yloc);
+      }
       else {
         stroke(255,0,0);
         noFill();
@@ -40,13 +45,19 @@ public class Enemy {
         stroke(0);
       }
     }
-    if (timer == 0) splashTarget = false;
+    if (timer == 0) {
+      splashTarget = false;
+    }
     damaged = false;
     text(hp,xloc+20,yloc-20);
   }
   
   void setSplash() {
     splashTarget = true;
+  }
+  
+  void setArtillery() {
+    artTarget = true;
   }
   
   void damage(int num) {
