@@ -77,6 +77,11 @@ public class Tower {
       towers.add(new Magic(xloc,yloc));
       towers.remove(curr);
     }
+    else if (type == 2) {
+      int curr = towers.indexOf(this);
+      towers.add(new Artillery(xloc,yloc));
+      towers.remove(curr);
+    }
   }
   
   void downgrade(ArrayList<Tower> towers) {
@@ -150,9 +155,18 @@ public class Tower {
     fill(95,85,85,191);
     rect(800-65,80,80,40);
     fill(0);
-    text("Cancel",800-65,80);
+    if (level == 0) text("Artillery",800-65,80);
+    else text("Cancel",800-65,80);
     if (menuClick(800-65,80,80,40)) {
-      selected = false;
+      if (level == 0) {
+        if (money > priceArtillery) {
+          upgrade(2,towers);
+          return priceArtillery;
+        }
+      }
+      else {
+        selected = false;
+      }
     }
     return 0;
   }

@@ -8,13 +8,13 @@ public class Artillery extends Tower {
     price = priceArtillery;
     splashRange = 70;
     thing = loadImage("Artillery.png");
-    thing.resize(thing.width/4,thing.height/4);
+    thing.resize(thing.width,thing.height);
   }
   
   void display(ArrayList<Tower> towers) {
     textSize(15);
     imageMode(CENTER);
-    image(thing,xloc,yloc-10);
+    image(thing,xloc,yloc);
     noFill();
     text(atkcooldown,xloc-10,yloc+30);
     if (atkcooldown > 0) atkcooldown--;
