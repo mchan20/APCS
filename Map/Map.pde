@@ -38,7 +38,7 @@ void setup() {
   for(int i = 1;i<4;i++) {
      enemies.add(new Goblin(1,i*40));
   }
-  enemies.add(new Shaman(1,4));
+  enemies.add(new Ogre(1,200));
   
   for(int i = 0;i<3;i++) {
      enemies.add(new Enemy(2,2,300+i*40));
