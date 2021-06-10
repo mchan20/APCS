@@ -34,7 +34,7 @@ public class Tower {
       //ellipse(xloc, yloc, 49,17);
       noFill();
     }
-    if (!selected(towers)) click();
+    if (!selected(towers) || selected) click();
   }
   
   boolean selected(ArrayList<Tower> towers) {

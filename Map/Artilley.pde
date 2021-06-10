@@ -1,7 +1,7 @@
-public class Artilley extends Tower {
+public class Artillery extends Tower {
   int splashRange;
   PImage thing;
-  Artilley(float xloc, float yloc) {
+  Artillery(float xloc, float yloc) {
     super(10, 100,50,xloc,yloc);
     //atk, atkRng, atkSpd
     level = 1;
