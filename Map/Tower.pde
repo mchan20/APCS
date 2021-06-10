@@ -1,5 +1,5 @@
 public class Tower {
-  int atk,level,price,atkSpd,atkcooldown,timer;
+  int atk,level,price,atkSpd,atkcooldown;
   float atkRng;
   float xloc, yloc;
   boolean selected;
@@ -193,9 +193,8 @@ public class Tower {
       if (!enemies.get(b).getDead())
         if (dist(enemies.get(b).getxloc(),enemies.get(b).getyloc(),xloc,yloc) < atkRng) {
           if (atkcooldown == 0) {
-            enemies.get(b).damage(atk*level);
+            enemies.get(b).damage(atk*level - enemies.get(b).getDef());
             atkcooldown = atkSpd;
-            timer = 10;
           }
         }
       }

@@ -1,12 +1,15 @@
 public class Enemy {
-  int path,hp,atk,moneyDrop,step,spd,timer,spawnTimer;
+  int path,hp,maxhp,atk,def,res,moneyDrop,step,spd,timer,spawnTimer;
   float xloc,yloc;
   boolean damaged,dead,splashTarget,artTarget;
   PImage thing,explosion;
   Enemy(int path, int spd,int spawnTimer) { //these are temporary values
     this.path = path;
     hp = 50;
+    maxhp = hp;
     atk = 5;
+    def = 0;
+    res = 0;
     moneyDrop = 5;
     step = 0;
     this.spd = spd;
@@ -84,6 +87,22 @@ public class Enemy {
   
   boolean getDead() {
     return dead;
+  }
+  
+  int getDef() {
+    return def;
+  }
+  
+  int getRes() {
+    return res;
+  }
+  
+  int getmaxhp() {
+    return maxhp;
+  }
+  
+  int gethp() {
+    return hp;
   }
   
   //movement code

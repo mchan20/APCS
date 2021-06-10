@@ -35,10 +35,10 @@ void setup() {
   unkilled = new ArrayList<Enemy>();
   
   // add all enemies
-  for(int i = 0;i<9;i++) {
-     enemies.add(new Goblin(1,i*30));
+  for(int i = 1;i<4;i++) {
+     enemies.add(new Goblin(1,i*40));
   }
-  enemies.add(new Enemy(2,2,4));
+  enemies.add(new Shaman(1,4));
   
   for(int i = 0;i<3;i++) {
      enemies.add(new Enemy(2,2,300+i*40));
@@ -228,10 +228,9 @@ void play() {
     for(int a=0;a<enemies.size();a++) {
       if (enemies.get(a).getPath() == 1) enemies.get(a).move(newCoords);
       else enemies.get(a).move(newCoords2);
-      finish(newCoords,enemies.get(a));
+      finish(enemies.get(a));
       if (enemies.size() > 0) enemies.get(a).death(enemies);
       numberKilled = enemyCount - enemies.size();
-
     }
     
     for(int b=0;b<towers.size();b++) {
@@ -262,7 +261,7 @@ void unpause() {
   }
 }
 
-void finish(ArrayList<Float> coords, Enemy a) {
+void finish(Enemy a) {
   if ((Math.abs(a.getxloc()- 372) < 2) && (Math.abs(a.getyloc() - 8) < 5) && (a.getDead() == false)) {
     enemies.remove(a);
     unkilled.add(a);
