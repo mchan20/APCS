@@ -6,7 +6,7 @@ public class Tower {
   
   
   final int priceRanged = 200;
-  final int priceMagic = 100;
+  final int priceMagic = 400;
   final int priceArtillery = 500;
   
   Tower(int atk, float atkRng, int atkSpd, float xloc, float yloc) {

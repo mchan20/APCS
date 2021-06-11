@@ -1,6 +1,6 @@
 public class Artillery extends Tower {
   int splashRange;
-  PImage thing;
+  PImage thing,thing2,thing3;
   Artillery(float xloc, float yloc) {
     super(20, 100,150,xloc,yloc);
     //atk, atkRng, atkSpd
@@ -9,12 +9,20 @@ public class Artillery extends Tower {
     splashRange = 70;
     thing = loadImage("Artillery.png");
     thing.resize(thing.width,thing.height);
+    
+    thing2 = loadImage("Artillery2.png");
+    thing2.resize((int) (thing2.width/1.75),(int) (thing2.height/1.75));
+    
+    thing3 = loadImage("Artillery3.png");
+    thing3.resize((int) (thing3.width/2),(int) (thing3.height/2));
   }
   
   void display(ArrayList<Tower> towers) {
     textSize(15);
     imageMode(CENTER);
-    image(thing,xloc,yloc);
+    if (level == 1) image(thing,xloc,yloc-5);
+    else if (level == 2) image(thing2,xloc,yloc-10);
+    else if (level == 3) image(thing3,xloc-5,yloc-10);
     noFill();
     text(atkcooldown,xloc-10,yloc+30);
     if (atkcooldown > 0) atkcooldown--;
