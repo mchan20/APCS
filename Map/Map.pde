@@ -38,7 +38,7 @@ void setup() {
   for(int i = 1;i<4;i++) {
      enemies.add(new Goblin(1,i*40));
   }
-  enemies.add(new Ogre(1,200));
+  enemies.add(new Ogre(1,1000));
   
   for(int i = 0;i<3;i++) {
      enemies.add(new Enemy(2,2,300+i*40));
@@ -47,6 +47,20 @@ void setup() {
   for(int i = 0;i<3;i++) {
      enemies.add(new Enemy(1,2,600+i*40));
   }
+  
+  for(int i = 0;i<4;i++) {
+     enemies.add(new Enemy(2,2,600+i*40)); 
+  }
+  
+  for(int i = 0;i<4;i++) {
+     enemies.add(new Goblin(2,800+i*40)); 
+  }
+  
+  for(int i = 0;i<2;i++) {
+     enemies.add(new Shaman(1,800+i*40)); 
+  }
+  
+  enemies.add(new Shaman(1,1000));
   
   for(int i = 0;i<4;i++) {
      enemies.add(new Enemy(2,2,600+i*40)); 
