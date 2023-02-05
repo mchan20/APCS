@@ -22,6 +22,7 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+<<<<<<< Updated upstream
 =======
 .DS_Store
 applet
@@ -33,4 +34,41 @@ application.windows32
 application.windows64
 application.macosx
 out
+=======
+<<<<<<< HEAD
+=======
+01-recursion/Tester.java
+01-recursion/Tester2.java
+02-queens/expectedOutput.txt
+02-queens/output.txt
+02-queens/QueenBoardTester.java
+02-queens/Tester.java
+02-queens/TesterHelper.sh
+02-queens/TesterMethods.java
+03-maze/.vscode/settings.json
+03-maze/input.txt
+04-usaco/imput.txt
+04-usaco/RandomTester.java
+04-usaco/randominput.txt
+05-quick/Driver.java
+05-quick/Tester.java
+06-merge/DriverMerge.java
+06-merge/SimpleSortTester.java
+07-mydeque/MyDequeTester.java
+07-mydeque/TesterMethods.java
+07-mydeque/Tester.java
+07-mydeque/test
+07-mydeque/stuff.txt
+07-mydeque/Maze.java
+07-mydeque/MaxTester.java
+07-mydeque/DequeTester.java
+.gitignore
+07-mydeque/data2.dat
+08-calculator/CalculatorSharedTester.java
+08-calculator/TesterMethods.java
+08-calculator/tests.data
+08-calculator/DriverCalculator.java
+09-treeburning/test.java
+10-heapsort/Tester.java
+>>>>>>> Stashed changes
 >>>>>>> temp/main

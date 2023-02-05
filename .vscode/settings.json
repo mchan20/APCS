@@ -1,0 +1,10 @@
+{
+  "files.exclude": {
+    "02-queens\\02-queens.zip": true,
+    "02-queens\\expectedOutput.txt": true,
+    "02-queens\\output.txt": true,
+    "02-queens\\QueenBoard.class": true,
+    "**/*.class": true,
+    ".vscode":true
+  }
+}
